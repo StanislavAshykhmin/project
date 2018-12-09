@@ -1,0 +1,43 @@
+version: '2'
+services:
+    project_web:
+        container_name: project-web-container
+        build:
+            context: ./data/docker/web
+            dockerfile: dev/Dockerfile
+            args:
+                HOST_UID: ${HOST_UID}
+        restart: always
+        volumes:
+            - .:/var/www/html
+        links:
+            - project_db
+            - project_redis
+        depends_on:
+            - project_db
+            - project_redis
+
+    project_db:
+        container_name: project-db-container
+        build:
+            context: ./data/docker/db
+            args:
+                HOST_UID: ${HOST_UID}
+        restart: always
+        volumes:
+            - ./data/volumes/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: project
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: secret
+
+    project_redis:
+        container_name: project-redis-container
+        restart: always
+        build:
+            context: ./data/docker/redis
+            args:
+                HOST_UID: ${HOST_UID}
+        volumes:
+            - ./data/volumes/redis:/data
