@@ -39,23 +39,14 @@
                             @endif
                         </div>
                     </div>
-=======
-                <form method="POST" action="http://localhost:45001/login">
-                <input type="hidden" name="_token" value="R9nIuIOgs3vinojjbuCgDEAFVoFJjBpqbeZO0k3J">
-                <label for="email" class="col-sm-4 col-form-label text-md-right"></label>
-                <input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Username">
-                <label for="password" class="col-md-4 col-form-label text-md-right"></label>
-                <input id="password" type="password" class="form-control" name="password" required placeholder="Password"><br>
->>>>>>> login_view
+
                 <button type="submit" class="btn btn-primary">
                     Log In
                 </button><br>
                 <div class="btn-link">
-<<<<<<< HEAD
+
                     <a href="{{ route('password.request') }}">
-=======
-                    <a href="#">
->>>>>>> login_view
+
                         Forgot Password?
                     </a>
                 </div>
