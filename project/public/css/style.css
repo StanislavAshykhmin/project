@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="R9nIuIOgs3vinojjbuCgDEAFVoFJjBpqbeZO0k3J">
+
+    <title>PolyMath</title>
+
+    <!-- Scripts -->
+    <script src="js/app.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Muli" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="css/.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="app">
+    <div class="container">
+       <a class="navbar-brand" href="#" ><img src="img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
+    </div>
+<main class="py-4">
+    <div class="row">
+        <div class="Reset Password">
+            <p>RESET PASSWORD</p>
+            <p><span class="text">Please type your email, and we'll send you a reset link</span></p>
+        <form method="POST" action="#">
+        <input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Email">
+        <div class="btn-primary">
+            <button type="submit" class="btn">
+                    Send
+            </button>
+        </div>
+        </form>
+        </div>
+    </div>
+</main>
+</div>
+</body>
+</html>
