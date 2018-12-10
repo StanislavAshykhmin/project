@@ -20,4 +20,5 @@
     <link href="css/style-login.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Muli" rel="stylesheet">
 </head>
+@yield('content')
 </html>
