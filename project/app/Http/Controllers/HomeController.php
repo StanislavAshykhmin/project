@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $users = User::all();
+        foreach ($users as $user){
+            echo $user->name;
+            echo $user->last_name;
+        }
         return view('home');
     }
 }
