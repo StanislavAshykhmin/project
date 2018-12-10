@@ -1,47 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+#app{
+	margin: 0px auto;
+}
+.container{
+	margin:91px auto 67px auto;
+	text-align: center;
+	display:block;
+}
+img{
+	width: 6em;
+	height: 3em;
+}
+.Poly{
+	font-size: 20px;
+	font-family: 'Muli', sans-serif;
+}
+.row{
+	margin: auto;
+	max-width: 450px;
+	justify-content: center;
+	text-align: center;
+	padding: 5px;
+	box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+.py-4 p{
+	font-size: 18px;
+	font-family: 'Muli', sans-serif;
+	color: #636363;
+	margin-top: 32px;
+}
+.btn{
+	margin: 12px auto 26px auto;
+	background-color: #919191;
+	height: 38px;
+	width: 128px;
+	border-radius: 5px;
+	color:#fbfbfb;
+	font-size: 13px;
+	outline: none;
+	font-family: 'Muli', sans-serif;
+	border: none;
+}
+.text{
+	font-size: 15px;
+	font-family: 'Muli', sans-serif;
+	color: #636363;
+}
+.container a{
+	color:#636363;
+	font-family:'Muli', sans-serif;
+	text-decoration: none; 
+}
+.form-control{
+	margin: 15px auto;
+	height: 40px;
+	min-width: 200px;
+	width: 300px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	outline: none;
+	font-family: 'Muli', sans-serif;
+	font-size: 15px;
+	border: none;
+}
+/*---Iphone 4---*/
+/*---Iphone 5---*/
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="R9nIuIOgs3vinojjbuCgDEAFVoFJjBpqbeZO0k3J">
-
-    <title>PolyMath</title>
-
-    <!-- Scripts -->
-    <script src="js/app.js" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Muli" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="css/.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-
-<body>
-<div id="app">
-    <div class="container">
-       <a class="navbar-brand" href="#" ><img src="img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
-    </div>
-<main class="py-4">
-    <div class="row">
-        <div class="Reset Password">
-            <p>RESET PASSWORD</p>
-            <p><span class="text">Please type your email, and we'll send you a reset link</span></p>
-        <form method="POST" action="#">
-        <input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Email">
-        <div class="btn-primary">
-            <button type="submit" class="btn">
-                    Send
-            </button>
-        </div>
-        </form>
-        </div>
-    </div>
-</main>
-</div>
-</body>
-</html>
+@media only screen and (max-device-width: 767px){
+	#app{
+	margin: 0px auto;
+	padding: 5px;
+}
+.container{
+	margin:50px auto 50px auto;
+	text-align: center;
+	display:block;
+}
+img{
+	width: 5em;
+	height: 2em;
+}
+.Poly{
+	font-size: 20px;
+	font-family: 'Muli', sans-serif;
+}
+.row{
+	margin: auto;
+	max-width: 80%;
+	justify-content: center;
+	text-align: center;
+	padding: 5px;
+	box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+.py-4 p{
+	font-size: 15px;
+	font-family: 'Muli', sans-serif;
+	color: #636363;
+	margin-top: 10px;
+}
+.btn{
+	margin: 10px auto;
+	background-color: #919191;
+	height: 38px;
+	width: 128px;
+	border-radius: 5px;
+	color:#fbfbfb;
+	font-family: sans-serif;
+	font-size: 12px;
+	outline: none;
+	font-family: 'Muli', sans-serif;
+	border: none;
+}
+.btn-link{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.btn-link a{
+	color:#919191;
+	font-size: 12px;
+	font-family: 'Muli', sans-serif;
+	text-decoration: none;
+}
+.text{
+	font-size:10px;
+	font-family: 'Muli', sans-serif;
+	color: #636363;
+}
+.container a{
+	color:#636363;
+	font-family:'Muli', sans-serif;
+	text-decoration: none; 
+}
+.form-control{
+	margin: 5px auto;
+	height: 40px;
+	min-width: 150px;
+	width: 85%;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	outline: none;
+	font-family: 'Muli', sans-serif;
+	font-size: 15px;
+	border: none;
+}
