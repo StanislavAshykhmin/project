@@ -10,8 +10,21 @@
         <div class="Reset Password">
             <p>RESET PASSWORD</p>
             <p><span class="text">Please type your email, and we'll send you a reset link</span></p>
-        <form method="POST" action="#">
-        <input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Email">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+        <form method="POST" action="{{ route('password.email') }}">
+            {{ csrf_field() }}
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                @endif
+            </div>
         <div class="btn-primary">
             <button type="submit" class="btn">
                     Send
