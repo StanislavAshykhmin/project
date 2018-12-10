@@ -3,7 +3,7 @@
 <body>
 <div id="app">
     <div class="container">
-       <a class="navbar-brand" href="#" ><img src="/public/img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
+       <a class="navbar-brand" href="#" ><img src="/img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
     </div>
 <main class="py-4">
     <div class="row">
