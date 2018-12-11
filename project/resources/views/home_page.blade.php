@@ -98,16 +98,17 @@
                                <p>Previous Company</p>
                              </div>-->
                  </div>
+                @foreach($users as $user)
                 <div class="row align-items-center text">
                         <!--<div class="col-lg-1 text-center">
                             <input type="checkbox" id="scales" name="scales" border="2">
                              </div>-->
                         <div class="col-lg-1 text-left test1">
-                            <img class="img" src="   " alt="">
+                            <img class="img" src="{{asset('storage/'.$user->photo)}}" alt="">
                          </div>
                         <div class="col-lg-10 test1">
-                            <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                            <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
+                            <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$user->birthday}})</p>
+                            <p>{{$user->email}} &nbsp {{$user->phone}} &nbsp {{$user->address}}</p>
                          </div>
                         <!--<div class="col-lg-2 test1">
                             <p class="name">DataLogic</p>
@@ -121,6 +122,7 @@
                             <a class="link3" href="#"><i class="fas fa-user-edit fa-2x"></i></a>
                          </div>
                  </div>
+            @endforeach
                     <!-- Не добавлять в проект-->
                     <!-- <div class="row align-items-center text">
                             <div class="col-lg-1 text-center">
@@ -290,122 +292,123 @@
                  </div>
              </div>
          </div>
-    <div class="container popup">
-        <div class="row">
-            <div class="col-lg-3 text-left add_user">
-                <h2>Add User</h2>
-             </div>
-            <div class="col-lg-1 offset-8">
-                <span class="close"></span>
-             </div>
-         </div>
-            <div class="row personal_contacts">
-                <div class="col-lg-1 text-right">
-                    <i class="fas fa-clipboard-list fa-2x"></i>
-                 </div>
-                <div class="col-lg-4 text-left">
-                    <p align="center">PERSONAL CONTACTS</p>
-                 </div>
-             </div>
-        <form>
-            <div class="row">
-                <div class="col-lg-2 text-left">
-                    <p>First Name</p>
-                 </div>
-                <div class="col-lg-4">
-                    <input type="text" name="first name">
-                 </div>
-                <div class="col-lg-3 text-left">
-                   <p>Personnal email</p>
-                 </div>
-                <div class="col-lg-3">
-                    <input type="text" name="first name">
-                 </div>
-                <div class="col-lg-2 text-left">
-                    <p>Last Name</p>
-                 </div>
-                <div class="col-lg-4">
-                    <input type="text" name="last name">
-                 </div>
-                <div class="col-lg-3 text-left">
-                    <p>Personnal phone</p>
-                 </div>
-                <div class="col-lg-3">
-                    <input type="text" name="personnal phone">
-                 </div>
-                <div class="col-lg-2 text-left">
-                    <p>Photo</p>
-                 </div>
-                <div class="col-lg-4">
-                    <a href="">Upload File</a></p>
-                 </div>
-                <div class="col-lg-3 text-left">
-                    <p>Personnal address</p>
-                 </div>
-                <div class="col-lg-3">
-                    <input type="text" name="personnal phone">
-                 </div>
-                <div class="col-lg-2 text-left">
-                    <p>Date of Birth</p>
-                 </div>
-                <div class="col-lg-10">
-                    <input type="date" name="bday" max="1900-01-01">
-                 </div>
-                <div class="col-lg-2 text-left">
-                    <p>Birthplace</p>
-                 </div>
-                <div class="col-lg-10">
-                    <input type="text" name="personnal phone">
-                 </div>
-                <div class="col-lg-2 text-left">
-                    <p>Date of Death</p>
-                 </div>
-                <div class="col-lg-10">
-                    <input type="date" name="bday" max="2018-12-31">
-                 </div>
-                <div class="col-lg-2 text-left">
-                    <p>Sex</p>
-                 </div>
-                <div class="col-lg-10">
-                    <input class="checkbox" type="radio" name="bday" max="2018-12-31">
-                    <label >Male</label>
-                    <input class="checkbox" type="radio" name="bday" max="2018-12-31">
-                    <label>Female</label>
-                 </div>
-             </div>
-                <hr/>
-            <div class="row personal_contacts">
-                <div class="col-lg-1 text-right">
-                    <img src="img/phone-book.png" alt="книга">
-                 </div>
-                <div class="col-lg-11 text-left">
-                    <p>CONTACTS</p>
-                 </div>
-             </div>
-            <div class="row add_contacts">
-                <div class="col-lg-4">
-                    <p>Add Contacts</p>
-                 </div>
-                <div class="col-lg-8">
-                    <input type="text" name="add contacts">
-                 </div>
-             </div>  
-            <hr/>
-            <div class="row">
-                <div class="col-lg-2">
-                    <p>Как познакомильcь</p>
-                </div>
-                <div class="col-lg-10">
-                    <select name="users" size="1" >
-                        <option value="1" selected>Семья</option>
-                        <option value="s2" >Работа</option>
-                        <option value="s3">Учеба</option>
-                        <option value="s4">Друзья</option>
-                     </select>
-                 </div>
-             </div>
-         </form>
-     </div>      
+
+    {{--<div class="container popup">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-lg-3 text-left add_user">--}}
+                {{--<h2>Add User</h2>--}}
+             {{--</div>--}}
+            {{--<div class="col-lg-1 offset-8">--}}
+                {{--<span class="close"></span>--}}
+             {{--</div>--}}
+         {{--</div>--}}
+            {{--<div class="row personal_contacts">--}}
+                {{--<div class="col-lg-1 text-right">--}}
+                    {{--<i class="fas fa-clipboard-list fa-2x"></i>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-4 text-left">--}}
+                    {{--<p align="center">PERSONAL CONTACTS</p>--}}
+                 {{--</div>--}}
+             {{--</div>--}}
+        {{--<form>--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>First Name</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-4">--}}
+                    {{--<input type="text" name="first name">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-3 text-left">--}}
+                   {{--<p>Personnal email</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-3">--}}
+                    {{--<input type="text" name="first name">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>Last Name</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-4">--}}
+                    {{--<input type="text" name="last name">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-3 text-left">--}}
+                    {{--<p>Personnal phone</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-3">--}}
+                    {{--<input type="text" name="personnal phone">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>Photo</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-4">--}}
+                    {{--<a href="">Upload File</a></p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-3 text-left">--}}
+                    {{--<p>Personnal address</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-3">--}}
+                    {{--<input type="text" name="personnal phone">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>Date of Birth</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-10">--}}
+                    {{--<input type="date" name="bday" max="1900-01-01">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>Birthplace</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-10">--}}
+                    {{--<input type="text" name="personnal phone">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>Date of Death</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-10">--}}
+                    {{--<input type="date" name="bday" max="2018-12-31">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-2 text-left">--}}
+                    {{--<p>Sex</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-10">--}}
+                    {{--<input class="checkbox" type="radio" name="bday" max="2018-12-31">--}}
+                    {{--<label >Male</label>--}}
+                    {{--<input class="checkbox" type="radio" name="bday" max="2018-12-31">--}}
+                    {{--<label>Female</label>--}}
+                 {{--</div>--}}
+             {{--</div>--}}
+                {{--<hr/>--}}
+            {{--<div class="row personal_contacts">--}}
+                {{--<div class="col-lg-1 text-right">--}}
+                    {{--<img src="img/phone-book.png" alt="книга">--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-11 text-left">--}}
+                    {{--<p>CONTACTS</p>--}}
+                 {{--</div>--}}
+             {{--</div>--}}
+            {{--<div class="row add_contacts">--}}
+                {{--<div class="col-lg-4">--}}
+                    {{--<p>Add Contacts</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-lg-8">--}}
+                    {{--<input type="text" name="add contacts">--}}
+                 {{--</div>--}}
+             {{--</div>  --}}
+            {{--<hr/>--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-2">--}}
+                    {{--<p>Как познакомильcь</p>--}}
+                {{--</div>--}}
+                {{--<div class="col-lg-10">--}}
+                    {{--<select name="users" size="1" >--}}
+                        {{--<option value="1" selected>Семья</option>--}}
+                        {{--<option value="s2" >Работа</option>--}}
+                        {{--<option value="s3">Учеба</option>--}}
+                        {{--<option value="s4">Друзья</option>--}}
+                     {{--</select>--}}
+                 {{--</div>--}}
+             {{--</div>--}}
+         {{--</form>--}}
+     {{--</div>      --}}
 
  </body>
  </html>

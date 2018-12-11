@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Friend;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $users = User::where('id', '!=', Auth::id())->get();
+        $date = Carbon::now()->toDateString();
         $id = 1;
          $friends = User::where('id' , '!=' , $id);
 
@@ -34,7 +37,7 @@ class HomeController extends Controller
          }
          $friends = $friends ->get();
 
-        return view('home', ['friends'=>$friends]);
+        return view('home_page', ['friends'=>$friends, 'users'=>$users, 'date'=>$date]);
     }
 
     public function show($id){
