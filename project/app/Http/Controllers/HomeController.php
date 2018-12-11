@@ -24,11 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        foreach ($users as $user){
-            echo $user->name;
-            echo $user->last_name;
+
+        $user = User::find(1);
+        foreach ($user->friends as $friend) {
+            echo $friend->name;
         }
+
+//        $users = User::all();
+//        foreach ($users as $user){
+//            echo $user->name;
+//            echo $user->last_name;
+//        }
         return view('home');
     }
 }

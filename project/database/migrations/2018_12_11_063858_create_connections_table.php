@@ -13,12 +13,10 @@ class CreateConnectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('connections', function (Blueprint $table) {
+        Schema::create('friend_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('connect_user_id')->unsigned();
-            $table->foreign('connect_user_id')->references('id')->on('users');
-            $table->integer('connect_user_p_id')->unsigned();
-            $table->foreign('connect_user_p_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateConnectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('connections');
+        Schema::dropIfExists('friend_user');
     }
 }

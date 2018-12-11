@@ -31,7 +31,7 @@ class User extends Authenticatable
         return $this->BelongsTo('App\Group');
     }
 
-    public function connects(){
-        return $this->morphMany('App\Connection', 'connect');
+    public function friends(){
+        return $this->belongsToMany('App\Friend');
     }
 }

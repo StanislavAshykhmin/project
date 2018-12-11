@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Connection;
+
 
 class ConnectionsSeeder extends Seeder
 {
@@ -12,9 +12,14 @@ class ConnectionsSeeder extends Seeder
      */
     public function run()
     {
-        Connection::create([
-            'connect_user_id'=>'2',
-            'connect_user_p_id'=>'1',
-        ]);
+        DB::table('friend_user')->insert(
+            [
+
+                [
+                    'user_id'=>'1',
+                    'friend_id'=>'1',
+                ],
+            ]
+        );
     }
 }
