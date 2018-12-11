@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function group(){
         return $this->BelongsTo('App\Group');
     }
+
+    public function connects(){
+        return $this->morphMany('App\Connection', 'connect');
+    }
 }
