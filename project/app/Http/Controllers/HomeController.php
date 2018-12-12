@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Friend;
 use App\User;
 use Carbon\Carbon;
@@ -25,19 +26,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::where('id', '!=', Auth::id())->get();
-        $date = Carbon::now()->toDateString();
+
+    public function index(){
+
         $id = 1;
-         $friends = User::where('id' , '!=' , $id);
+        $userP = Contact::find($id);
+        $friends = $userP->childs;
+        $bfriends = $userP->bchilds;
+        $users = Contact::all();
+        $date = Carbon::now()->toDateString();
 
-         if ( Auth::user()->friends->count()) {
-             $friends -> whereNotIn( 'id' , Auth::user() -> friends -> modelKeys());
-         }
-         $friends = $friends ->get();
-
-        return view('home_page', ['friends'=>$friends, 'users'=>$users, 'date'=>$date]);
+        return view('home_page', [ 'users'=>$users, 'date'=>$date, 'friends'=>$friends,'bfriends'=>$bfriends, 'userP'=>$userP]);
     }
 
     public function show($id){

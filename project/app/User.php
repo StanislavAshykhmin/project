@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+protected $with = ['friends', 'bfriends'];
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -32,8 +33,15 @@ class User extends Authenticatable
     }
 
         public function friends(){
-        return $this->belongsToMany('App\User' , 'friend_user' , 'user_id' , 'friend_id');
+        return $this->belongsToMany('App\Friend' , 'friend_user' , 'user_id' , 'friend_id');
+
         }
+
+        public function bfriends(){
+            return $this->belongsToMany('App\Friend' , 'friend_user' , 'friend_id' , 'user_id');
+        }
+
+
 
 
 

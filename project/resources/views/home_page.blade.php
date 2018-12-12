@@ -27,11 +27,18 @@
                     <div class="col-lg-2 offset-7 text-right dropdown-button">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-link dropdown-toggle menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 John Doe
+                                    {{ Auth::user()->name }}
                              </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="#">Dropdown link</a>
-                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                              </div>
                          </div>
                      </div>
@@ -40,69 +47,76 @@
                     <div class="col-lg-1 text-center Users knopka">
                         <a class="link1" href="#">Users</a>
                      </div>
-                        <!-- Не добавлять в проект-->
-                        <!-- <div class="col-lg-1 text-center Users">
-                            <a class="link1" href="#">Statistic</a>
-                              </div>-->
-                        <!-- <div class="col-lg-4 offset-6 text-right">
-                               <button class="btn search indent" type="submit"><i class="fas fa-search"></i></button>
-                               <button class="btn filter indent" type="submit"><i class="fas fa-sliders-h"></i>Add Filter</button>
-                               <button class="btn copy indent" type="submit"><i class="fas fa-copy"></i></button>
-                               <button class="btn indent download" type="submit"><i class="fas fa-file-download"></i></button>
-                              </div>-->
                      </div>
                  </div>    
              </div>
          </div>
+
+<div class="tree">
+    <ul>
+        <li>
+            {{$userP->name}}
+            <ul>
+{{--                @if(!empty($friends))--}}
+        @foreach($friends as $friend)
+                    <ul>
+            <li>
+                {{ $friend->name }}
+                @if(count($friend->childs))
+                    @include('welcome',['childs' => $friend->childs, 'id'=>$userP->id, 'id'=>$friend->id])
+                @endif
+            </li>
+                    </ul>
+                    @foreach($bfriends as $bfriend)
+                        <ul><li>
+                                {{ $bfriend->name }}
+                                @if(count($bfriend->bchilds))
+                                    @include('auth.register',['bchilds' => $bfriend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])
+                                @endif
+                                @include('welcome',['childs' => $bfriend->childs, 'id'=>$userP->id, 'id'=>$friend->id])
+                            </li>
+                        </ul>
+                    @endforeach
+        @endforeach
+                    {{--@endif--}}
+                    {{--@foreach($bfriends as $bfriend)--}}
+                        {{--<ul>--}}
+                            {{--<li>--}}
+                                {{--{{ $bfriend->name }}--}}
+                                {{--@if(count($bfriend->bchilds))--}}
+                                    {{--@include('auth.register',['bchilds' => $bfriend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])--}}
+                                {{--@endif--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                        {{--@foreach($friends as $friend)--}}
+                            {{--<ul><li>--}}
+                                    {{--{{ $friend->name }}--}}
+                                    {{--@if(count($friend->childs))--}}
+                                        {{--@include('welcome',['childs' => $friend->childs, 'id'=>$userP->id, 'id'=>$friend->id])--}}
+                                    {{--@endif--}}
+                                    {{--@include('auth.register',['bchilds' => $friend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--@endforeach--}}
+                    {{--@endforeach--}}
+
+
+            </ul>
+        </li>
+    </ul>
+</div>
         <div class="content">
             <div class="container">
-                <!-- Не добавлять в проект-->
-                <!--<div class="row buttons">
-                      <div class="col-lg-8 knopka">
-                        <button class="btn Male" type="button">Male&nbsp;&nbsp;&nbsp;&nbsp;&#215;</button>
-                        <button class="btn Manager" type="button">Manager&nbsp;&nbsp;&#215;</button>
-                        <button class="btn Libra" type="button">Libra&nbsp;&nbsp;&nbsp;&#215;</button>
-                        <button class="btn streess" type="button">#streess-resistant&nbsp;&nbsp;&nbsp;&nbsp;&#215;</button>
-                        <button class="btn selfmodivated" type="button">#selfmotivated&nbsp;&nbsp;&nbsp;&nbsp;&#215;</button>
-                     </div> 
-                      <div class="col-lg-3 offset-1 text-right save_search">
-                        <a class="" href="#">Save Search</a>
-                        <a class="clear" href="#">Clear All</a>
-                     </div>
-                     </div>
-                <div class="row blog">
-                    <div class="col-lg-3 knopka">
-                        <p><i class="fas fa-user-friends"></i> &nbsp 283 434 Users Fouded</p>
-                    </div>
-                    <div <div class="col-lg-1 text-right offset-8">  
-                        <a class="link3" href="#"><i class="fas fa-list fa-1x"></i></a>
-                         <a class="link3" href="#"><i class="fas fa-th-large fa-1x"></i></a>
-                    </div>
-                 </div>-->
                 <div class="row align-items-center text">
-                        <!--<div class="col-lg-1 text-center">
-                            <span><i class="far fa-square"></i></span>
-                                <input type="checkbox" id="scales" name="scales">
-                                <label for="scales"></label>
-                             </div>-->
                         <div class="col-lg-1 text-left test">
                             <p>Photo</p>
                          </div>
                         <div class="col-lg-10 text-left test">
                             <p>Main info</p>
                          </div>
-                        <!--<div class="col-lg-2 text-left test">
-                                <p>Company</p>
-                              </div>-->
-                        <!--<div class="col-lg-3 text-left test">
-                               <p>Previous Company</p>
-                             </div>-->
                  </div>
                 @foreach($users as $user)
                 <div class="row align-items-center text">
-                        <!--<div class="col-lg-1 text-center">
-                            <input type="checkbox" id="scales" name="scales" border="2">
-                             </div>-->
                         <div class="col-lg-1 text-left test1">
                             <img class="img" src="{{asset('storage/'.$user->photo)}}" alt="">
                          </div>
@@ -110,181 +124,11 @@
                             <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$user->birthday}})</p>
                             <p>{{$user->email}} &nbsp {{$user->phone}} &nbsp {{$user->address}}</p>
                          </div>
-                        <!--<div class="col-lg-2 test1">
-                            <p class="name">DataLogic</p>
-                            <p>HR</p>
-                             </div>-->
-                        <!--<div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>-->
                         <div class="col-lg-1 text-center test2">
                             <a class="link3" href="#"><i class="fas fa-user-edit fa-2x"></i></a>
                          </div>
                  </div>
             @endforeach
-                    <!-- Не добавлять в проект-->
-                    <!-- <div class="row align-items-center text">
-                            <div class="col-lg-1 text-center">
-                                <input type="checkbox" id="scales" name="scales">
-                             </div>
-                            <div class="col-lg-1 text-left test1">
-                                <img class="img" src="  " alt="">
-                             </div>
-                            <div class="col-lg-5 test1">
-                                <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                                <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">DataLogic</p>
-                                <p>HR</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>
-                            <div class="col-lg-1 text-center test2">
-                            <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                         </div>
-                         </div>
-                    <div class="row align-items-center text">
-                        <div class="col-lg-1 text-center">
-                            <input type="checkbox" id="scales" name="scales">
-                         </div>
-                        <div class="col-lg-1 text-left test1">
-                            <img class="img" src="   " alt="">
-                         </div>
-                        <div class="col-lg-5 test1">
-                            <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                            <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                         </div>
-                        <div class="col-lg-2 test1">
-                            <p class="name">DataLogic</p>
-                            <p>HR</p>
-                         </div>
-                        <div class="col-lg-2 test1">
-                            <p class="name">ArtSoft</p>
-                            <p>Developer</p>
-                         </div>
-                        <div class="col-lg-1 text-center test2">
-                            <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                         </div>
-                     </div>
-                    <div class="row align-items-center text">
-                            <div class="col-lg-1 text-center">
-                                <input type="checkbox" id="scales" name="scales">
-                             </div>
-                            <div class="col-lg-1 text-left test1">
-                                <img class="img" src="   " alt="">
-                             </div>
-                            <div class="col-lg-5 test1">
-                                <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                                <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">DataLogic</p>
-                                <p>HR</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>
-                            <div class="col-lg-1 text-center test2">
-                                <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                             </div>
-                     </div>
-                    <div class="row align-items-center text">
-                            <div class="col-lg-1 text-center">
-                                <input type="checkbox" id="scales" name="scales">
-                             </div>
-                            <div class="col-lg-1 text-left test1">
-                                <img class="img" src=" " alt="">
-                             </div>
-                            <div class="col-lg-5 test1">
-                                <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                                <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">DataLogic</p>
-                                <p>HR</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>
-                            <div class="col-lg-1 text-center test2">
-                                <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                             </div>
-                     </div>
-                    <div class="row align-items-center text">
-                            <div class="col-lg-1 text-center">
-                                <input type="checkbox" id="scales" name="scales">
-                             </div>
-                            <div class="col-lg-1 text-left test1">
-                                <img class="img" src="  " alt="">
-                             </div>
-                            <div class="col-lg-5 test1">
-                                <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                                <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">DataLogic</p>
-                                <p>HR</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>
-                            <div class="col-lg-1 text-center test2">
-                                <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                             </div>
-                     </div>
-                    <div class="row align-items-center text">
-                            <div class="col-lg-1 text-center">
-                                <input type="checkbox" id="scales" name="scales">
-                             </div>
-                            <div class="col-lg-1 text-left test1">
-                                <img class="img" src="  " alt="">
-                             </div>
-                            <div class="col-lg-5 test1">
-                                <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                                <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">DataLogic</p>
-                                <p>HR</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>
-                            <div class="col-lg-1 text-center test2">
-                                <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                             </div>
-                     </div>
-                    <div class="row align-items-center text">
-                            <div class="col-lg-1 text-center">
-                                <input type="checkbox" id="scales" name="scales">
-                             </div>
-                            <div class="col-lg-1 text-left test1">
-                                <img class="img" src=" " alt="">
-                             </div>
-                            <div class="col-lg-5 test1">
-                                <p class="name">Andrew Wilson (<i class="fas fa-mars"></i> age 38)</p>
-                                <p>andrewww@gmail.com &nbsp 10-4343-0055 &nbsp Mons, Belgium</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">DataLogic</p>
-                                <p>HR</p>
-                             </div>
-                            <div class="col-lg-2 test1">
-                                <p class="name">ArtSoft</p>
-                                <p>Developer</p>
-                             </div>
-                            <div class="col-lg-1 text-center test2">
-                                <a class="link3" href="#"><i class="fas fa-file-download fa-2x"></i></a>
-                             </div>
-                     </div> -->
                 <div class="button_open_popup">
                     <button class="button_add_users">
                     <span class="open"></span>
@@ -292,123 +136,6 @@
                  </div>
              </div>
          </div>
-
-    {{--<div class="container popup">--}}
-        {{--<div class="row">--}}
-            {{--<div class="col-lg-3 text-left add_user">--}}
-                {{--<h2>Add User</h2>--}}
-             {{--</div>--}}
-            {{--<div class="col-lg-1 offset-8">--}}
-                {{--<span class="close"></span>--}}
-             {{--</div>--}}
-         {{--</div>--}}
-            {{--<div class="row personal_contacts">--}}
-                {{--<div class="col-lg-1 text-right">--}}
-                    {{--<i class="fas fa-clipboard-list fa-2x"></i>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-4 text-left">--}}
-                    {{--<p align="center">PERSONAL CONTACTS</p>--}}
-                 {{--</div>--}}
-             {{--</div>--}}
-        {{--<form>--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>First Name</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-4">--}}
-                    {{--<input type="text" name="first name">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-3 text-left">--}}
-                   {{--<p>Personnal email</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-3">--}}
-                    {{--<input type="text" name="first name">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>Last Name</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-4">--}}
-                    {{--<input type="text" name="last name">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-3 text-left">--}}
-                    {{--<p>Personnal phone</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-3">--}}
-                    {{--<input type="text" name="personnal phone">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>Photo</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-4">--}}
-                    {{--<a href="">Upload File</a></p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-3 text-left">--}}
-                    {{--<p>Personnal address</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-3">--}}
-                    {{--<input type="text" name="personnal phone">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>Date of Birth</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-10">--}}
-                    {{--<input type="date" name="bday" max="1900-01-01">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>Birthplace</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-10">--}}
-                    {{--<input type="text" name="personnal phone">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>Date of Death</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-10">--}}
-                    {{--<input type="date" name="bday" max="2018-12-31">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-2 text-left">--}}
-                    {{--<p>Sex</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-10">--}}
-                    {{--<input class="checkbox" type="radio" name="bday" max="2018-12-31">--}}
-                    {{--<label >Male</label>--}}
-                    {{--<input class="checkbox" type="radio" name="bday" max="2018-12-31">--}}
-                    {{--<label>Female</label>--}}
-                 {{--</div>--}}
-             {{--</div>--}}
-                {{--<hr/>--}}
-            {{--<div class="row personal_contacts">--}}
-                {{--<div class="col-lg-1 text-right">--}}
-                    {{--<img src="img/phone-book.png" alt="книга">--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-11 text-left">--}}
-                    {{--<p>CONTACTS</p>--}}
-                 {{--</div>--}}
-             {{--</div>--}}
-            {{--<div class="row add_contacts">--}}
-                {{--<div class="col-lg-4">--}}
-                    {{--<p>Add Contacts</p>--}}
-                 {{--</div>--}}
-                {{--<div class="col-lg-8">--}}
-                    {{--<input type="text" name="add contacts">--}}
-                 {{--</div>--}}
-             {{--</div>  --}}
-            {{--<hr/>--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-lg-2">--}}
-                    {{--<p>Как познакомильcь</p>--}}
-                {{--</div>--}}
-                {{--<div class="col-lg-10">--}}
-                    {{--<select name="users" size="1" >--}}
-                        {{--<option value="1" selected>Семья</option>--}}
-                        {{--<option value="s2" >Работа</option>--}}
-                        {{--<option value="s3">Учеба</option>--}}
-                        {{--<option value="s4">Друзья</option>--}}
-                     {{--</select>--}}
-                 {{--</div>--}}
-             {{--</div>--}}
-         {{--</form>--}}
-     {{--</div>      --}}
 
  </body>
  </html>

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
 //        $this->call(CreateUser2Seeder::class);
 //        $this->call(CreateFriend2Seeder::class);
 //        $this->call(CreateFriendUser2Seeder::class);
+        $this->call(CreateContactsSeeder::class);
     }
 }
