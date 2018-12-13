@@ -121,7 +121,7 @@
                             <img class="img" src="{{asset('storage/'.$user->photo)}}" alt="">
                          </div>
                         <div class="col-lg-10 test1">
-                            <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$user->birthday}})</p>
+                            <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$interval = now()->diffInYears( \Carbon\Carbon::parse($user->birthday))}})</p>
                             <p>{{$user->email}} &nbsp {{$user->phone}} &nbsp {{$user->address}}</p>
                          </div>
                         <div class="col-lg-1 text-center test2">
