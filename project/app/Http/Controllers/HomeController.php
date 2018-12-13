@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
-use App\Friend;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class HomeController extends Controller
 {
@@ -33,6 +35,32 @@ class HomeController extends Controller
         $users = Contact::all();
         return view('home_page', ['users' => $users]);
     }
+    public function store(Request $request){
+
+        $data = $request->all();
+        if (!empty($data->photo)) {
+            $image = $request->file('photo')->store('uploads', 'public');
+        }else
+        $image = null;
+
+        if ($data['parent_id' == null]){
+            $data['parent_id'] = 1;
+        }
+
+        DB::table('contacts')->insert([
+            'name'=>$data['name'],
+            'email'=>$data['email'],
+            'last_name'=>$data['last_name'],
+            'phone'=>$data['phone'],
+            'address'=>$data['address'],
+            'birthday'=>$data['birthday'],
+            'death'=>$data['death'],
+            'sex'=>$data['sex'],
+            'parent_id'=>$data['parent_id'],
+            'photo'=>$image,
+        ]);
+        return redirect('/home')->with('message', 'Contact create');
+        }
 
     public function show($id)
     {
@@ -43,5 +71,12 @@ class HomeController extends Controller
         $bfriends = $userP->bchilds;
         return view('register', ['friends' => $friends,/*'bfriends'=>$bfriends, */
             'user' => $user]);
+    }
+
+    public function destroy($id){
+        $user = Contact::find($id);
+        Storage::delete('public/'.$user->photo);
+        $user->delete();
+        return redirect('/home')->with('message', 'Contact delete');
     }
 }
