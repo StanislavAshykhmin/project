@@ -28,15 +28,8 @@ class HomeController extends Controller
      */
 
     public function index(){
-
-        $birthday = '01.12.1935';
-        $tmp = explode('.', $birthday);
-        $old = date('Y')-$tmp[2];
-//        dd('Возраст: ' . $old);
         $users = Contact::all();
         $date = Carbon::now()->toDateString();
-//        dd($date);
-
         return view('home_page', [ 'users'=>$users, 'date'=>$date]);
     }
 
