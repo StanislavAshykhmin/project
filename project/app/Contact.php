@@ -6,17 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    public $fillable = ['name', 'parent_id'];
+    public $fillable = ['name','parent_id', 'id'];
 
-    public function childs()
-    {
+    public function childs() {
 //        return $this->hasMany('App\Contact','parent_id','id') ;
-        return $this->hasMany('App\Contact', 'parent_id', 'id');
-//        return $this->hasMany('App\Contact','id','parent_id')->union($first);
+        $first = $this->hasMany('App\Contact','parent_id','id');
+        return $this->hasMany('App\Contact','id','parent_id')->union($first);
     }
 
-    public function bchilds()
-    {
-        return $this->hasMany('App\Contact', 'id', 'parent_id');
-    }
+//    public function bchilds() {
+//        return $this->hasMany('App\Contact','id','parent_id');
+//    }
 }

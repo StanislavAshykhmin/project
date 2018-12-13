@@ -52,32 +52,32 @@
              </div>
          </div>
 
-<div class="tree">
-    <ul>
-        <li>
-            {{$userP->name}}
-            <ul>
+{{--<div class="tree">--}}
+    {{--<ul>--}}
+        {{--<li>--}}
+            {{--{{$userP->name}}--}}
+            {{--<ul>--}}
 {{--                @if(!empty($friends))--}}
-        @foreach($friends as $friend)
-                    <ul>
-            <li>
-                {{ $friend->name }}
-                @if(count($friend->childs))
-                    @include('welcome',['childs' => $friend->childs, 'id'=>$userP->id, 'id'=>$friend->id])
-                @endif
-            </li>
-                    </ul>
-                    @foreach($bfriends as $bfriend)
-                        <ul><li>
-                                {{ $bfriend->name }}
-                                @if(count($bfriend->bchilds))
-                                    @include('auth.register',['bchilds' => $bfriend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])
-                                @endif
-                                @include('welcome',['childs' => $bfriend->childs, 'id'=>$userP->id, 'id'=>$friend->id])
-                            </li>
-                        </ul>
-                    @endforeach
-        @endforeach
+        {{--@foreach($friends as $friend)--}}
+                    {{--<ul>--}}
+            {{--<li>--}}
+                {{--{{ $friend->name }}--}}
+                {{--@if(count($friend->childs))--}}
+                    {{--@include('welcome',['childs' => $friend->childs, 'id'=>$userP->id, 'id'=>$friend->id])--}}
+                {{--@endif--}}
+            {{--</li>--}}
+                    {{--</ul>--}}
+                   {{-- @foreach($bfriends as $bfriend)--}}
+                        {{--<ul><li>--}}
+                                {{--{{ $bfriend->name }}--}}
+                                {{--@if(count($bfriend->bchilds))--}}
+                                    {{--@include('auth.register',['bchilds' => $bfriend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])--}}
+                                {{--@endif--}}
+                                {{--@include('welcome',['childs' => $bfriend->childs, 'id'=>$userP->id, 'id'=>$friend->id])--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--@endforeach--}}
+        {{--@endforeach--}}
                     {{--@endif--}}
                     {{--@foreach($bfriends as $bfriend)--}}
                         {{--<ul>--}}
@@ -101,10 +101,10 @@
                     {{--@endforeach--}}
 
 
-            </ul>
-        </li>
-    </ul>
-</div>
+            {{--</ul>--}}
+        {{--</li>--}}
+    {{--</ul>--}}
+{{--</div>--}}
         <div class="content">
             <div class="container">
                 <div class="row align-items-center text">

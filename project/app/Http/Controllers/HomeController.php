@@ -29,24 +29,19 @@ class HomeController extends Controller
 
     public function index(){
 
-        $id = 1;
-        $userP = Contact::find($id);
-        $friends = $userP->childs;
-        $bfriends = $userP->bchilds;
+
         $users = Contact::all();
         $date = Carbon::now()->toDateString();
 
-        return view('home_page', [ 'users'=>$users, 'date'=>$date, 'friends'=>$friends,'bfriends'=>$bfriends, 'userP'=>$userP]);
+        return view('home_page', [ 'users'=>$users, 'date'=>$date]);
     }
 
     public function show($id){
-        $id = 4;
-        $friends = User::where('id' , '!=' , $id);
-
-        if ( Auth::user()->friends->count()) {
-            $friends -> whereNotIn( 'id' , Auth::user() -> friends -> modelKeys());
-        }
-        $friends = $friends ->get();
-        return view('', ['friends'=>$friends]);
+        $id = 1;
+//        $userP = Contact::find($id);
+        $user = Contact::all();
+        $friends = $user->childs;
+//        $bfriends = $userP->bchilds;
+        return view('register', ['friends'=>$friends,/*'bfriends'=>$bfriends, */'user'=>$user]);
     }
 }
