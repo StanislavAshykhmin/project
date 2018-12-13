@@ -29,8 +29,7 @@ class HomeController extends Controller
 
     public function index(){
         $users = Contact::all();
-        $date = Carbon::now()->toDateString();
-        return view('home_page', [ 'users'=>$users, 'date'=>$date]);
+        return view('home_page', [ 'users'=>$users]);
     }
 
     public function show($id){
