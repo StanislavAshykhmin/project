@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
-use App\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AddRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,17 +32,14 @@ class HomeController extends Controller
         $users = Contact::all();
         return view('home_page', ['users' => $users]);
     }
-    public function store(Request $request){
+    public function store(AddRequest $request){
 
         $data = $request->all();
         if (!empty($data->photo)) {
             $image = $request->file('photo')->store('uploads', 'public');
         }else
-        $image = null;
+        $image = '';
 
-        if ($data['parent_id' == null]){
-            $data['parent_id'] = 1;
-        }
 
         DB::table('contacts')->insert([
             'name'=>$data['name'],
