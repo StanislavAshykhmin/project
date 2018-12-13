@@ -24,7 +24,7 @@ class CreateContactsTable extends Migration
             $table->date('death')->nullable();
             $table->string('sex');
             $table->integer('phone')->nullable();
-            $table->integer('parent_id')->nullable();
+            $table->integer('parent_id')->nullable()->default(0);
             $table->timestamps();
         });
     }
