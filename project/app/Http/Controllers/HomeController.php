@@ -27,17 +27,21 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(){
+
+    public function index()
+    {
         $users = Contact::all();
-        return view('home_page', [ 'users'=>$users]);
+        return view('home_page', ['users' => $users]);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $id = 1;
-//        $userP = Contact::find($id);
+        $userP = Contact::find($id);
         $user = Contact::all();
         $friends = $user->childs;
-//        $bfriends = $userP->bchilds;
-        return view('register', ['friends'=>$friends,/*'bfriends'=>$bfriends, */'user'=>$user]);
+        $bfriends = $userP->bchilds;
+        return view('register', ['friends' => $friends,/*'bfriends'=>$bfriends, */
+            'user' => $user]);
     }
 }
