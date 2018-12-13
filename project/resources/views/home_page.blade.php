@@ -108,29 +108,33 @@
     <div class="content">
         <div class="container">
             <div class="row align-items-center text">
-                <div class="col-lg-1 text-left test">
+                <div class="col-4 col-lg-1 text-left test">
                     <p>Photo</p>
                 </div>
-                <div class="col-lg-10 text-left test">
+                <div class="col-8 col-lg-10 text-left test">
                     <p>Main info</p>
                 </div>
             </div>
             @foreach($users as $user)
                 <div class="row align-items-center text">
-                    <div class="col-lg-1 text-left test1">
+                    <div class="col-2 col-lg-1 text-left test1">
                         <img class="img" src="{{asset('storage/'.$user->photo)}}" alt="">
                     </div>
-                    <div class="col-lg-10 test1">
+                    <div class=" col-8 col-lg-9 test1">
                         <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$interval = now()->diffInYears( \Carbon\Carbon::parse($user->birthday))}})</p>
                         <p>{{$user->email}} &nbsp {{$user->phone}} &nbsp {{$user->address}}</p>
                     </div>
-                    <div class="col-lg-1 text-center test2">
+                    <div class="col-2 col-lg-1 text-center test2 enter">
                         <a class="link3" href="#"><i class="fas fa-user-edit fa-2x"></i></a>
                     </div>
+                    <div class="col-12 col-lg-1 text-center">
+                        <span class="dagger">&times;</span>
+                    </div>
+
                 </div>
             @endforeach
             <div class="button_open_popup">
-                <button class="button_add_users">
+                <button class="button_add_users enter">
                     <span class="open"></span>
                 </button>
             </div>
