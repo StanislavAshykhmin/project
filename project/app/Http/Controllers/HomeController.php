@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Http\Requests\AddRequest;
+use App\Http\Requests\UpdateRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,10 +36,10 @@ class HomeController extends Controller
     public function store(AddRequest $request){
 
         $data = $request->all();
-        if (!empty($data->photo)) {
+//        if (!empty($data->photo)) {
             $image = $request->file('photo')->store('uploads', 'public');
-        }else
-        $image = '';
+//        }else
+//        $image = '';
 
 
         DB::table('contacts')->insert([
@@ -66,6 +67,31 @@ class HomeController extends Controller
         return view('register', ['friends' => $friends,/*'bfriends'=>$bfriends, */
             'user' => $user]);
     }
+//    public function update(UpdateRequest $request){
+//
+//        $data = $request->except('_token');
+//        $user = Contact::find($request->input('id'));
+//        if($request->file('photo')){
+//            Storage::delete('public/'.$user->image);
+//            $image = $request->file('photo')->store('uploads', 'public');
+//            $user->image = $image;
+//        }
+//
+//        $user->name = $data['name'];
+//        $user->email = $data['email'];
+//        $user->last_name = $data['last_name'];
+//        $user->phone = $data['phone'];
+//        $user->address = $data['address'];
+//        $user->birthday = $data['birthday'];
+//        $user->death = $data['death'];
+//        $user->sex = $data['sex'];
+//        $user->parent_id= $data['parent_id'];
+//        $user->photo = $image;
+//
+//
+//        $res = $user->childs()->save($user);
+//        return redirect('/home')->with('message', 'Contact update');
+//    }
 
     public function destroy($id){
         $user = Contact::find($id);

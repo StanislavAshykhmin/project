@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,10 @@ class AddRequest extends FormRequest
     {
         return [
             'name'=>'required|max:20|alpha',
-            'email'=>'required|email|unique:contacts',
+            'email'=>'required|email',
             'last_name'=>'required|max:20|alpha',
             'phone'=>'integer',
-            'photo'=>'image',
+            'photo'=>'image|required',
             'address'=>'required|max:20',
             'birthday'=>'required',
             'sex'=>'required',
