@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name'=>'required|max:20|alpha',
-            'email'=>'required|email',
+            'email'=>'required|email|unique:contacts',
             'last_name'=>'required|max:20|alpha',
             'phone'=>'integer',
             'photo'=>'image|required',
