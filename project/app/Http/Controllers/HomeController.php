@@ -67,7 +67,6 @@ class HomeController extends Controller
         return view('register', ['friends' => $friends,/*'bfriends'=>$bfriends, */
             'user' => $user]);
     }
-
 //    public function update(UpdateRequest $request){
 //
 //        $data = $request->except('_token');
