@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $users = Contact::all();
+        $users = Contact::where('id', '>', '0')->paginate(10);
         return view('home_page', ['users' => $users]);
     }
     public function store(AddRequest $request){
@@ -59,39 +59,45 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $id = 1;
-        $userP = Contact::find($id);
-        $user = Contact::all();
+        $user = Contact::find($id);
         $friends = $user->childs;
-        $bfriends = $userP->bchilds;
-        return view('register', ['friends' => $friends,/*'bfriends'=>$bfriends, */
+//        $bfriends = $userP->bchilds;
+        return view('auth.register', ['friends' => $friends,/*'bfriends'=>$bfriends, */
             'user' => $user]);
     }
-//    public function update(UpdateRequest $request){
-//
-//        $data = $request->except('_token');
-//        $user = Contact::find($request->input('id'));
-//        if($request->file('photo')){
-//            Storage::delete('public/'.$user->image);
-//            $image = $request->file('photo')->store('uploads', 'public');
-//            $user->image = $image;
-//        }
-//
-//        $user->name = $data['name'];
-//        $user->email = $data['email'];
-//        $user->last_name = $data['last_name'];
-//        $user->phone = $data['phone'];
-//        $user->address = $data['address'];
-//        $user->birthday = $data['birthday'];
-//        $user->death = $data['death'];
-//        $user->sex = $data['sex'];
-//        $user->parent_id= $data['parent_id'];
-//        $user->photo = $image;
-//
-//
-//        $res = $user->childs()->save($user);
-//        return redirect('/home')->with('message', 'Contact update');
-//    }
+
+    public function edit($id){
+        $users = Contact::all();
+        $userU = Contact::find($id);
+
+        return view('update', ['userU'=>$userU, 'users'=>$users]);
+    }
+
+    public function update(UpdateRequest $request){
+
+        $data = $request->except('_token');
+        $userU = Contact::find($request->input('id'));
+        if($request->file('photo')){
+            Storage::delete('public/'.$userU->image);
+            $image = $request->file('photo')->store('uploads', 'public');
+            $userU->photo = $image;
+        }
+//        dd($data['id']);
+        $userU->id = $data['id'];
+        $userU->name = $data['name'];
+        $userU->email = $data['email'];
+        $userU->last_name = $data['last_name'];
+        $userU->phone = $data['phone'];
+        $userU->address = $data['address'];
+        $userU->birthday = $data['birthday'];
+        $userU->death = $data['death'];
+        $userU->sex = $data['sex'];
+        $userU->parent_id= $data['parent_id'];
+
+
+        $res = $userU->saveContacts()->save($userU);
+        return redirect('/home')->with('message', 'Contact update');
+    }
 
     public function destroy($id){
         $user = Contact::find($id);

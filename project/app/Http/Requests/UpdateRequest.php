@@ -24,13 +24,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:20|alpha',
-            'email'=>'required|email|unique:contacts',
-            'last_name'=>'required|max:20|alpha',
+            'name'=>'max:20|alpha',
+            'email'=>'email',
+            'last_name'=>'max:20|alpha',
             'phone'=>'integer',
-            'photo'=>'image|required',
-            'address'=>'required|max:20',
-            'birthday'=>'required',
+            'photo'=>'image',
+            'address'=>'max:20',
             'sex'=>'required',
         ];
     }

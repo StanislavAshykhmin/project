@@ -20,4 +20,8 @@ class Contact extends Model
     public function age(){
         return now()->diffInYears( \Carbon\Carbon::parse($this->birthday));
     }
+
+    public function saveContacts(){
+        return $this->hasMany('App\Contact', 'id');
+    }
 }

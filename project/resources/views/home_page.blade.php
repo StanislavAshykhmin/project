@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class=" col-6 col-lg-3 Users knopka">
                         <img class="logo" src="img/logo.png" alt="Logo site">
-                        <a href="#">Users</a>
+                        <a href="">Users</a>
                      </div>
                     <div class="col-6 col-lg-9 text-right dropdown-button">
                         <div class="btn-group" role="group">
@@ -44,7 +44,7 @@
                  </div>
                 <div class="row link">
                     <div class="col-lg-1 text-left Users knopka">
-                        <a class="link1" href="#">Users</a>
+                        <a class="link1" href="">Users</a>
                      </div>
 
                      </div>
@@ -74,13 +74,13 @@
                         <img class="img" src="{{asset('storage/'.$user->photo)}}" alt="">
                     </div>
                     <div class=" col-8 col-lg-9 test1">
-                        <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$user->age()}})</p>
+                        <p class="name"><a href="{{route('user', ['id' => $user->id])}}">{{$user->name}}</a> (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$user->age()}})</p>
                         <p>{{$user->email}} &nbsp {{$user->phone}} &nbsp {{$user->address}}</p>
                     </div>
-                    <div class="col-2 col-lg-1 text-center test2 enter-update">
-                        <a class="link3" href="#"><i class="fas fa-user-edit fa-2x"></i></a>
+                    <div class="col-2 col-lg-1 text-center test2 {{--enter-update--}} " data-id="{{$user->id}}">
+                        <a class="edit-button link3" href="{{route('update', ['id'=>$user->id])}}"><i class="fas fa-user-edit fa-2x"></i></a>
                     </div>
-                    {{--<div class="button_open_popup enter-update">--}}
+                    {{--<div class="button_open_popup enter-update" data-id="{{$user->id}}">--}}
                         {{--<button class="edit-button">--}}
                             {{--<i class="fas fa-user-edit fa-2x"></i>--}}
                             {{--<span class="open"></span>--}}
@@ -110,6 +110,9 @@
 
                 </div>
             @endforeach
+            <ul class="pagination" style="border: #1f648b;">
+                {{ $users->links() }}
+            </ul>
             <div class="button_open_popup">
                 <button class="button_add_users enter">
                     <span class="open"></span>
@@ -315,12 +318,13 @@
         </div>
         <form method="post" action="{{route('update_push')}}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input class="id" type="hidden" name="id" value="">
             <div class="row">
                 <div class="col-12 col-lg-2 text-left">
                     <p>First Name</p>
                 </div>
                 <div class="col-12 col-lg-4">
-                    <input type="text" name="name" value="{{ $user->name }}">
+                    <input class="qw" type="text" name="name" value="{{--{{ $user->id }}--}}">
                     @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -494,6 +498,14 @@
         $('body,html').animate({scrollTop:0},800);
     });
 });
+
+    $(function () {
+        $('.edit-button').click(function (e) {
+            var parent = $(this).parent('.enter-update');
+            $('.qw').val(+parent.data('id'));
+        });
+    });
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 

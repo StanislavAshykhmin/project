@@ -1,16 +1,18 @@
 <ul>
-    @foreach ($childs as $child)
-                        @if($child->id != $userP->id)
-        <li>
-                {{$child-> name}}
-            @if(count($child->childs))
-                    @if($child->name != $child->name)
-                @include('welcome',['childs' => $child->childs])
-                        @endif
+    @foreach ($friend->childs as $friend)
+                @if($friend->id != $user->id)
+                        <li>
+                            <a href="">{{$friend-> name}}</a>
+                                @if(count($friend->childs))
+                                    {{$res = $friend->id}}
+                            {{--{{dd($res)}}--}}
+                                @if($friend->id != $res)
+                                @include('welcome')
+                                @endif
 
-            @endif
+                                @endif
 
-        </li>
-                        @endif
+                        </li>
+                @endif
     @endforeach
 </ul>
