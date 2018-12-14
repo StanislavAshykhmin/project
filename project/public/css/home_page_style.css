@@ -285,6 +285,29 @@ input:before{
 	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
 }
+.user-data-popup{
+	max-width: 70%;
+	background: #ffffff;
+	padding: 30px 70px;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y:scroll;
+	max-height: 100%;
+	box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+.user-data-popup div{
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.user-data-popup div p{
+	padding-top: 12px;
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+}
 label{
 	padding-top: 10px;
 	font-size: 17px;
@@ -341,7 +364,7 @@ input{
 	background: #f5f2f2;
 	border: none;
 	height: 35px;
-	width: 200px;
+	width: 260px;
 	border-radius: 10px;
 	border: 1px solid gold;
 	margin-left: -30px;
@@ -349,8 +372,11 @@ input{
 	outline: 0 !important;
 	cursor: pointer;
 }
+strong {
+	display: block;
+}
 .personal_contacts img{
-	width: 60%;
+	width: 25px;
 }
 .fa-clipboard-list{
 	font-size: 1.5em;
@@ -409,7 +435,19 @@ hr{
 	font-size: 40px;
 	color:#919191;
 	cursor: pointer;
+	border: none;
+	outline: 0 !important;
+	text-decoration: none;
 }
+
+.btn-light{
+	background: #fff;
+}
+
+.btn-light:hover{
+	background: #fff;
+}
+
 div.row.confirm_or_chancel{
 	margin-top: 90px;
 	margin-bottom: 50px;
@@ -758,6 +796,29 @@ input:before{
 	font-size: 13px;
 	font-family: 'Roboto', sans-serif;
 }
+	.user-data-popup{
+		max-width: 70%;
+		background: #ffffff;
+		padding: 20px 30px;
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow-y:scroll;
+		max-height: 100%;
+		box-shadow: 0 0 30px rgba(0,0,0,0.5);
+	}
+	.user-data-popup div{
+		margin-bottom: 2px;
+		margin-top: 2px;
+	}
+	.user-data-popup div p{
+		padding-top: 12px;
+		font-size: 13px;
+		font-family: 'Roboto', sans-serif;
+	}
 label{
 	padding-top: 10px;
 	font-size: 15px;
@@ -823,7 +884,7 @@ input{
 	cursor: pointer;
 }
 .personal_contacts img{
-	width: 70%;
+	width: 25px;
 	margin-right: 5px;
 }
 .fa-clipboard-list{

@@ -52,59 +52,12 @@
              </div>
          </div>
 
-{{--<div class="tree">--}}
-    {{--<ul>--}}
-        {{--<li>--}}
-            {{--{{$userP->name}}--}}
-            {{--<ul>--}}
-{{--                @if(!empty($friends))--}}
-        {{--@foreach($friends as $friend)--}}
-                    {{--<ul>--}}
-            {{--<li>--}}
-                {{--{{ $friend->name }}--}}
-                {{--@if(count($friend->childs))--}}
-                    {{--@include('welcome',['childs' => $friend->childs, 'id'=>$userP->id, 'id'=>$friend->id])--}}
-                {{--@endif--}}
-            {{--</li>--}}
-                    {{--</ul>--}}
-                   {{-- @foreach($bfriends as $bfriend)--}}
-                        {{--<ul><li>--}}
-                                {{--{{ $bfriend->name }}--}}
-                                {{--@if(count($bfriend->bchilds))--}}
-                                    {{--@include('auth.register',['bchilds' => $bfriend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])--}}
-                                {{--@endif--}}
-                                {{--@include('welcome',['childs' => $bfriend->childs, 'id'=>$userP->id, 'id'=>$friend->id])--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                    {{--@endforeach--}}
-        {{--@endforeach--}}
-                    {{--@endif--}}
-                    {{--@foreach($bfriends as $bfriend)--}}
-                        {{--<ul>--}}
-                            {{--<li>--}}
-                                {{--{{ $bfriend->name }}--}}
-                                {{--@if(count($bfriend->bchilds))--}}
-                                    {{--@include('auth.register',['bchilds' => $bfriend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])--}}
-                                {{--@endif--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                        {{--@foreach($friends as $friend)--}}
-                            {{--<ul><li>--}}
-                                    {{--{{ $friend->name }}--}}
-                                    {{--@if(count($friend->childs))--}}
-                                        {{--@include('welcome',['childs' => $friend->childs, 'id'=>$userP->id, 'id'=>$friend->id])--}}
-                                    {{--@endif--}}
-                                    {{--@include('auth.register',['bchilds' => $friend->bchilds, 'id'=>$userP->id, 'id'=>$bfriend->id])--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--@endforeach--}}
-                    {{--@endforeach--}}
 
-
-            {{--</ul>--}}
-        {{--</li>--}}
-    {{--</ul>--}}
-{{--</div>--}}
+    @if (session('message'))
+        <div class="alert alert-light" style="text-align: center;">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="content">
         <div class="container">
             <div class="row align-items-center text">
@@ -124,11 +77,35 @@
                         <p class="name">{{$user->name}} (@if($user->sex == 'male')<i class="fas fa-mars"></i>@else<i class="fas fa-venus"></i>@endif  age {{$user->age()}})</p>
                         <p>{{$user->email}} &nbsp {{$user->phone}} &nbsp {{$user->address}}</p>
                     </div>
-                    <div class="col-2 col-lg-1 text-center test2 enter">
+                    <div class="col-2 col-lg-1 text-center test2 enter-update">
                         <a class="link3" href="#"><i class="fas fa-user-edit fa-2x"></i></a>
                     </div>
-                    <div class="col-12 col-lg-1 text-center">
-                        <span class="dagger">&times;</span>
+                    {{--<div class="button_open_popup enter-update">--}}
+                        {{--<button class="edit-button">--}}
+                            {{--<i class="fas fa-user-edit fa-2x"></i>--}}
+                            {{--<span class="open"></span>--}}
+                        {{--</button>--}}
+                    {{--</div>--}}
+                    <button class="dagger btn-light" data-toggle="modal" data-target="#delete-{{$user->id}}">&times;</button>
+                    <div class="modal fade" id="delete-{{$user->id}}" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Удалить</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form  action="{{ route('delete', ['id' => $user->id]) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-danger">Удалить</button>
+                                        <button type="button" class="btn btn-primary m-t-10" data-dismiss="modal">Закрыть</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -140,12 +117,10 @@
             </div>
         </div>
     </div>
-
-
     <div class="container popup">
         <div class="row">
             <div class="col-6 col-lg-3 text-left add_user">
-                <h2>Add User</h2>
+                <h2>Add Contact</h2>
              </div>
             <div class="col-6 col-lg-9 text-right">
                 <span class="close exit"></span>
@@ -159,70 +134,112 @@
                     <p>PERSONAL CONTACTS</p>
                  </div>
              </div>
-        <form>
+        <form method="post" action="{{route('add')}}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="col-12 col-lg-2 text-left">
                     <p>First Name</p>
                  </div>
                 <div class="col-12 col-lg-4">
-                    <input type="text" name="first name">
+                    <input type="text" name="name" value="{{ old('name') }}">
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
                  </div>
-                <div class=" col-12 col-lg-3 text-left">
+                <div class="col-12 col-lg-3 text-left">
                    <p>Personnal email</p>
                  </div>
                 <div class="col-12 col-lg-3">
-                    <input type="text" name="first name">
+                    <input type="email" name="email" value="{{ old('email') }}">
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                  </div>
                 <div class="col-12 col-lg-2 text-left">
                     <p>Last Name</p>
                  </div>
                 <div class="col-12 col-lg-4">
-                    <input type="text" name="last name">
+                    <input type="text" name="last_name"  value="{{ old('last_name') }}">
+                    @if ($errors->has('last_name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                        </span>
+                    @endif
                  </div>
                 <div class="col-12 col-lg-3 text-left">
                     <p>Personnal phone</p>
                  </div>
                 <div class="col-12 col-lg-3">
-                    <input type="text" name="personnal phone">
+                    <input type="text" name="phone" value="{{ old('phone') }}">
+                    @if ($errors->has('phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
+                    @endif
                  </div>
                 <div class="col-4 col-lg-2 text-left">
                     <p>Photo</p>
                  </div>
                 <div class="col-6 col-lg-4 upload">
-                    <a href="">Upload File</a></p>
+                    <label for="photo"></label>
+                    <input type="file" name="photo"  value="{{ old('photo') }}">
+                    @if ($errors->has('photo'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('photo') }}</strong>
+                        </span>
+                    @endif
                  </div>
                 <div class="col-12 col-lg-3 text-left">
                     <p>Personnal address</p>
                  </div>
                 <div class="col-12 col-lg-3">
-                    <input type="text" name="personnal phone">
+                    <input type="text" name="address" value="{{ old('address') }}">
+                    @if ($errors->has('address'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('address') }}</strong>
+                        </span>
+                    @endif
                  </div>
                 <div class="col-12 col-lg-2 text-left">
                     <p>Date of Birth</p>
                  </div>
                 <div class="col-12 col-lg-10">
-                    <input type="date" name="bday" max="1900-01-01">
+                    <input type="date" name="birthday" min="1900-01-01" value="{{ old('birthday') }}">
+                    @if ($errors->has('birthday'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('birthday') }}</strong>
+                        </span>
+                    @endif
                  </div>
-                <div class="col-12 col-lg-2 text-left">
-                    <p>Birthplace</p>
-                 </div>
-                <div class="col-12 col-lg-10">
-                    <input type="text" name="personnal phone">
-                 </div>
+                {{--<div class="col-12 col-lg-2 text-left">--}}
+                    {{--<p>Birthplace</p>--}}
+                 {{--</div>--}}
+                {{--<div class="col-12 col-lg-10">--}}
+                    {{--<input type="text" name="personnal phone">--}}
+                 {{--</div>--}}
                 <div class="col-12 col-lg-2 text-left">
                     <p>Date of Death</p>
                  </div>
                 <div class="col-12 col-lg-10">
-                    <input type="date" name="bday" max="2018-12-31">
+                    <input type="date" name="death" {{--max="2018-12-31"--}}  value="{{ old('death') }}">
                  </div>
                 <div class="col-3 col-lg-1 text-left">
                     <p>Sex</p>
                  </div>
                 <div class="col-9 col-lg-11 check">
-                    <input class="checkbox" type="radio" name="bday" max="2018-12-31">
+                    <input class="checkbox" type="radio" name="sex" value="male">
                     <label >Male</label>
-                    <input class="checkbox" type="radio" name="bday" max="2018-12-31">
+                    <input class="checkbox" type="radio" name="sex" value="female">
                     <label>Female</label>
+                    @if ($errors->has('sex'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('sex') }}</strong>
+                        </span>
+                    @endif
                  </div>
              </div>
                 <hr/>
@@ -239,41 +256,232 @@
                     <p>Add Contacts</p>
                  </div>
                 <div class="col-12 col-lg-10">
-                    <input class="contacts_input" type="text" name="add contacts">
+                    {{--<input class="contacts_input" type="text" name="add contacts">--}}
+                    <select name="parent_id" size="1">
+                        <option selected></option>
+                        @foreach($users as $user)
+                        <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                            @endforeach
+                    </select>
                  </div>
              </div>
-            <hr>
-            <div class="row">
-                <div class="col-12 col-lg-3">
-                    <p>How to get acquainted</p>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <select name="users" size="1" >
-                        <option value="1" selected>Family</option>
-                        <option value="s2" >Job</option>
-                        <option value="s3">Study</option>
-                        <option value="s4">Friends</option>
-                     </select>
-                 </div>
-             </div>
+            {{--<hr>--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-12 col-lg-3">--}}
+                    {{--<p>How to get acquainted</p>--}}
+                {{--</div>--}}
+                {{--<div class="col-12 col-lg-9">--}}
+                    {{--<select name="users" size="1" >--}}
+                        {{--<option value="1" selected>Family</option>--}}
+                        {{--<option value="s2" >Job</option>--}}
+                        {{--<option value="s3">Study</option>--}}
+                        {{--<option value="s4">Friends</option>--}}
+                     {{--</select>--}}
+                 {{--</div>--}}
+             {{--</div>--}}
             <div class="row confirm_or_chancel text-center">
                 <div class=" col-5 col-lg-2">
-                     <button class="confirm" type="button" name="add users">Add Users</button>
+                     <button class="confirm" type="submit" name="add users">Add Contact</button>
                  </div>
                 <div class="col-7 col-lg-2">
-                    <button class="chancel exit" type="button" name="Chancel">Chancel</button>
+                    <button class="chancel exit" type="button" name="Chancel">Cancel</button>
                  </div>
              </div>
          </form>
      </div>
-     <div id="toTop">&#8657;</div>  
+
+
+
+    {{--update contact--}}
+
+
+
+    <div class="container user-data-popup">
+        <div class="row">
+            <div class="col-6 col-lg-3 text-left add_user">
+                <h2>Update Contact</h2>
+            </div>
+            <div class="col-6 col-lg-9 text-right">
+                <span class="close exit"></span>
+            </div>
+        </div>
+        <div class="row personal_contacts">
+            <div class="col-3 col-lg-1 text-right">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="col-9 col-lg-4 text-left">
+                <p>PERSONAL CONTACTS</p>
+            </div>
+        </div>
+        <form method="post" action="{{route('update_push')}}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="row">
+                <div class="col-12 col-lg-2 text-left">
+                    <p>First Name</p>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <input type="text" name="name" value="{{ $user->name }}">
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-12 col-lg-3 text-left">
+                    <p>Personnal email</p>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <input type="email" name="email" value="{{ old('email') }}">
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-12 col-lg-2 text-left">
+                    <p>Last Name</p>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <input type="text" name="last_name"  value="{{ old('last_name') }}">
+                    @if ($errors->has('last_name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-12 col-lg-3 text-left">
+                    <p>Personnal phone</p>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <input type="text" name="phone" value="{{ old('phone') }}">
+                    @if ($errors->has('phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-4 col-lg-2 text-left">
+                    <p>Photo</p>
+                </div>
+                <div class="col-6 col-lg-4 upload">
+                    <label for="photo"></label>
+                    <input type="file" name="photo"  value="{{ old('photo') }}">
+                    @if ($errors->has('photo'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('photo') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-12 col-lg-3 text-left">
+                    <p>Personnal address</p>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <input type="text" name="address" value="{{ old('address') }}">
+                    @if ($errors->has('address'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('address') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="col-12 col-lg-2 text-left">
+                    <p>Date of Birth</p>
+                </div>
+                <div class="col-12 col-lg-10">
+                    <input type="date" name="birthday" min="1900-01-01" value="{{ old('birthday') }}">
+                    @if ($errors->has('birthday'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('birthday') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                {{--<div class="col-12 col-lg-2 text-left">--}}
+                {{--<p>Birthplace</p>--}}
+                {{--</div>--}}
+                {{--<div class="col-12 col-lg-10">--}}
+                {{--<input type="text" name="personnal phone">--}}
+                {{--</div>--}}
+                <div class="col-12 col-lg-2 text-left">
+                    <p>Date of Death</p>
+                </div>
+                <div class="col-12 col-lg-10">
+                    <input type="date" name="death" {{--max="2018-12-31"--}}  value="{{ old('death') }}">
+                </div>
+                <div class="col-3 col-lg-1 text-left">
+                    <p>Sex</p>
+                </div>
+                <div class="col-9 col-lg-11 check">
+                    <input class="checkbox" type="radio" name="sex" value="male">
+                    <label >Male</label>
+                    <input class="checkbox" type="radio" name="sex" value="female">
+                    <label>Female</label>
+                    @if ($errors->has('sex'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('sex') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            <hr/>
+            <div class="row personal_contacts">
+                <div class="col-3 col-lg-1 text-right phone_book">
+                    <img src="img/phone-book.png" alt="книга">
+                </div>
+                <div class="col-9 col-lg-11 text-left contacts">
+                    <p>CONTACTS</p>
+                </div>
+            </div>
+            <div class="row add_contacts">
+                <div class="col-12 col-lg-2">
+                    <p>Add Contacts</p>
+                </div>
+                <div class="col-12 col-lg-10">
+                    {{--<input class="contacts_input" type="text" name="add contacts">--}}
+                    <select name="parent_id" size="1">
+                        <option selected></option>
+                        @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            {{--<hr>--}}
+            {{--<div class="row">--}}
+            {{--<div class="col-12 col-lg-3">--}}
+            {{--<p>How to get acquainted</p>--}}
+            {{--</div>--}}
+            {{--<div class="col-12 col-lg-9">--}}
+            {{--<select name="users" size="1" >--}}
+            {{--<option value="1" selected>Family</option>--}}
+            {{--<option value="s2" >Job</option>--}}
+            {{--<option value="s3">Study</option>--}}
+            {{--<option value="s4">Friends</option>--}}
+            {{--</select>--}}
+            {{--</div>--}}
+            {{--</div>--}}
+            <div class="row confirm_or_chancel text-center">
+                <div class=" col-5 col-lg-2">
+                    <button class="confirm" type="submit" name="add users">Update Contact</button>
+                </div>
+                <div class="col-7 col-lg-2">
+                    <button class="chancel exit" type="button" name="Chancel">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+     <div id="toTop">&#8657;</div>
 <script type="text/javascript">
     $('.enter').click(function(){
       $(".popup").fadeIn();
-});    
+});
+    $('.enter-update').click(function(){
+        $(".user-data-popup").fadeIn();
+    });
     $('.exit').click(function(){
       $('.popup').fadeOut();
 });
+    $('.exit').click(function(){
+        $('.user-data-popup').fadeOut();
+    });
     $(function() {
         $(window).scroll(function() {
              if($(this).scrollTop() != 0) {
