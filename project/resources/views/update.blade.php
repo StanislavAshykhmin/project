@@ -15,14 +15,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
-<div class="container user-data-popup1">
+<div class="container user-data-popup">
     <div class="row">
         <div class="col-6 col-lg-3 text-left add_user">
             <h2>Update Contact</h2>
         </div>
-        <div class="col-6 col-lg-9 text-right">
-            <span class="close exit"></span>
-        </div>
+        {{--<div class="col-6 col-lg-9 text-right">--}}
+            {{--<span class="close exit"></span>--}}
+        {{--</div>--}}
     </div>
     <div class="row personal_contacts">
         <div class="col-3 col-lg-1 text-right">
@@ -183,7 +183,7 @@
                 <button class="confirm" type="submit" name="add users">Update Contact</button>
             </div>
             <div class="col-7 col-lg-2">
-                <button class="chancel exit" type="button" name="Chancel">Cancel</button>
+                <button class="chancel exit" type="button" name="Chancel"><a href="{{route('home')}}" style="text-decoration: none; color: black">Cancel</a></button>
             </div>
         </div>
     </form>

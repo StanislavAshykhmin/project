@@ -23,5 +23,6 @@ Route::group(['middleware'=>['web', 'auth']], function () {
     Route::get('/{id}', 'HomeController@show')->name('user');
     Route::post('/home/update', 'HomeController@update')->name('update_push');
     Route::get('/home/update/{id}', 'HomeController@edit')->name('update');
+    Route::get('/ajax/contact/{id}', 'HomeController@getAjaxUSER')->name('ajax-contact');
     Route::delete('/home/delete/{id}', 'HomeController@destroy')->name('delete');
 });

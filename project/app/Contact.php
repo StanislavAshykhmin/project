@@ -7,18 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     public $fillable = ['name','parent_id', 'id'];
+    protected $with = [
+        'children',
+        'parent'
+    ];
 
-    public function childs() {
-//        return $this->hasMany('App\Contact','parent_id','id') ;
-        $first = $this->hasMany('App\Contact','parent_id','id');
-        return $this->hasMany('App\Contact','id','parent_id')->union($first);
+
+    public function children() {
+        return  $this->hasMany('App\Contact','parent_id','id');
     }
 
-//    public function bchilds() {
-//        return $this->hasMany('App\Contact','id','parent_id');
-//    }
     public function age(){
         return now()->diffInYears( \Carbon\Carbon::parse($this->birthday));
+    }
+
+    public function parent(){
+        return  $this->belongsTo('App\Contact','id','parent_id');
     }
 
     public function saveContacts(){

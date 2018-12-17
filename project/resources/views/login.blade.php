@@ -19,7 +19,7 @@
 
                 <label for="email" class="col-sm-4 col-form-label text-md-right"></label>
 
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Username">
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
                         <div class="col-md-6">
                             @if ($errors->has('email'))
                                 <span class="help-block">

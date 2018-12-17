@@ -3,7 +3,7 @@
 <body>
 <div id="app">
     <div class="container">
-       <a class="navbar-brand" href="#" ><img src="/img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
+       <a class="navbar-brand" href="{{route('home')}}" ><img src="/img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
     </div>
 <main class="py-4">
     <div class="row">
@@ -21,7 +21,7 @@
         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
                 @if ($errors->has('email'))
                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong style="display:block;">{{ $errors->first('email') }}</strong>
                                     </span>
                 @endif
             </div>
