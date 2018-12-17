@@ -12,7 +12,7 @@
                             <ul>
                                 @foreach($friends as $friend)
                                     <li>
-                                        <a href="">{{$friend->name}}</a>
+                                        <a href="{{route('user', ['id' => $friend->id])}}">{{$friend->name}}</a>
                                         @if(count($friend->children))
                                             @include('dashboard.tree.reqursive-tree', ['id' => $user->id, 'childrens'=>$friend->children])
                                         @endif

@@ -27,10 +27,11 @@ class AddRequest extends FormRequest
             'name'=>'required|max:20|alpha',
             'email'=>'required|email|unique:contacts',
             'last_name'=>'required|max:20|alpha',
-            'phone'=>'integer',
-            'photo'=>'image',
+            'phone'=>'min:10|max:10',
+            'photo'=>'image|required',
             'address'=>'required|max:20',
-            'birthday'=>'required',
+            'birthday'=>'required|before:tomorrow',
+//            'death'=>'before:tomorrow',
             'sex'=>'required',
         ];
     }

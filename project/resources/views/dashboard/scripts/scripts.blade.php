@@ -28,6 +28,7 @@
         });
     });
 
+
     // $(function () {
     //     $('.edit-button').click(function (e) {
     //         var parent = $(this).parent('.enter-update');
@@ -36,6 +37,17 @@
     // });
 
 </script>
+{{--@if($errors->all())--}}
+    {{--<script>--}}
+        {{--$('.enter').click();--}}
+    {{--</script>--}}
+    {{--@endif--}}
+{{--@if(isset($_POST['update']) && $errors->all())--}}
+    {{--<script>--}}
+        {{--$('.enter-update').click();--}}
+    {{--</script>--}}
+{{--@endif--}}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
     $(function () {

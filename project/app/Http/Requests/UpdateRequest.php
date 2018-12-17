@@ -27,9 +27,10 @@ class UpdateRequest extends FormRequest
             'name'=>'max:20|alpha',
             'email'=>'email',
             'last_name'=>'max:20|alpha',
-            'phone'=>'integer',
+            'phone'=>'min:10|max:10',
             'photo'=>'image',
             'address'=>'max:20',
+            'birthday'=>'before:tomorrow',
             'sex'=>'required',
         ];
     }

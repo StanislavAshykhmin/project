@@ -102,20 +102,37 @@
             {{--<div class="col-12 col-lg-10">--}}
             {{--<input type="text" name="personnal phone">--}}
             {{--</div>--}}
-            <div class="col-12 col-lg-2 text-left">
-                <p>Date of Death</p>
-            </div>
-            <div class="col-12 col-lg-10">
-                <input type="date" name="death" {{--max="2018-12-31"--}}  value="{{ old('death') }}">
-            </div>
+            {{--<div class="col-12 col-lg-2 text-left">--}}
+                {{--<p>Date of Death</p>--}}
+            {{--</div>--}}
+            {{--<div class="col-12 col-lg-10">--}}
+                {{--<input type="date" name="death" --}}{{--max="2018-12-31"--}}{{--  value="{{ old('death') }}">--}}
+                {{--@if ($errors->has('death'))--}}
+                    {{--<span class="help-block">--}}
+                            {{--<strong>{{ $errors->first('death') }}</strong>--}}
+                        {{--</span>--}}
+                {{--@endif--}}
+            {{--</div>--}}
             <div class="col-3 col-lg-1 text-left">
                 <p>Sex</p>
             </div>
             <div class="col-9 col-lg-11 check">
-                <input class="checkbox" type="radio" name="sex" value="male">
+                @if(old('sex') == 'male')
+                <input class="checkbox" type="radio" name="sex" value="male" checked>
                 <label >Male</label>
                 <input class="checkbox" type="radio" name="sex" value="female">
                 <label>Female</label>
+                    @elseif(old('sex') == 'female')
+                    <input class="checkbox" type="radio" name="sex" value="male">
+                    <label >Male</label>
+                    <input class="checkbox" type="radio" name="sex" value="female" checked>
+                    <label>Female</label>
+                    @else
+                    <input class="checkbox" type="radio" name="sex" value="male">
+                    <label >Male</label>
+                    <input class="checkbox" type="radio" name="sex" value="female">
+                    <label>Female</label>
+                @endif
                 @if ($errors->has('sex'))
                     <span class="help-block">
                             <strong>{{ $errors->first('sex') }}</strong>
@@ -162,7 +179,7 @@
         {{--</div>--}}
         <div class="row confirm_or_chancel text-center">
             <div class=" col-5 col-lg-2">
-                <button class="confirm" type="submit" name="add users">Add Contact</button>
+                <button class="confirm" type="submit" name="add">Add Contact</button>
             </div>
             <div class="col-7 col-lg-2">
                 <button class="chancel exit" type="button" name="Chancel">Cancel</button>
@@ -170,6 +187,8 @@
         </div>
     </form>
 </div>
+
+
 
 
 
@@ -282,16 +301,17 @@
              {{--<div class="col-12 col-lg-10">--}}
              {{--<input type="text" name="personnal phone">--}}
              {{--</div>--}}
-             <div class="col-12 col-lg-2 text-left">
-                 <p>Date of Death</p>
-             </div>
-             <div class="col-12 col-lg-10">
-                 <input type="date" name="death" max="2018-12-31"  value="{{ old('death') }}">
-             </div>
+             {{--<div class="col-12 col-lg-2 text-left">--}}
+                 {{--<p>Date of Death</p>--}}
+             {{--</div>--}}
+             {{--<div class="col-12 col-lg-10">--}}
+                 {{--<input type="date" name="death" max="2018-12-31"  value="{{ old('death') }}">--}}
+             {{--</div>--}}
              <div class="col-3 col-lg-1 text-left">
                  <p>Sex</p>
              </div>
              <div class="col-9 col-lg-11 check">
+                 {{--<input class="sex" type="hidden" name="sex" value="">--}}
                  <input class="checkbox" type="radio" name="sex" value="male">
                  <label >Male</label>
                  <input class="checkbox" type="radio" name="sex" value="female">
@@ -342,7 +362,7 @@
          {{--</div>--}}
          <div class="row confirm_or_chancel text-center">
              <div class=" col-5 col-lg-2">
-                 <button class="confirm" type="submit" name="add users">Update Contact</button>
+                 <button class="confirm" type="submit" name="update">Update Contact</button>
              </div>
              <div class="col-7 col-lg-2">
                  <button class="chancel exit" type="button" name="Chancel">Cancel</button>

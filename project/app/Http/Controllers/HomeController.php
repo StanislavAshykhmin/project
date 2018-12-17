@@ -37,7 +37,7 @@ class HomeController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'birthday' => $data['birthday'],
-            'death' => $data['death'],
+//            'death' => $data['death'],
             'sex' => $data['sex'],
             'parent_id' => $data['parent_id'],
             'photo' => $image,
@@ -49,7 +49,6 @@ class HomeController extends Controller
     {
         $user = Contact::find($id);
         $friends = $user->children;
-//        $bfriends = $userP->bchilds;
         return view('dashboard.contacts.show', ['friends' => $friends,/*'bfriends'=>$bfriends, */
             'user' => $user]);
     }
@@ -78,7 +77,7 @@ class HomeController extends Controller
         $userU->phone = $data['phone'];
         $userU->address = $data['address'];
         $userU->birthday = $data['birthday'];
-        $userU->death = $data['death'];
+//        $userU->death = $data['death'];
         $userU->sex = $data['sex'];
         $userU->parent_id = $data['parent_id'];
 
