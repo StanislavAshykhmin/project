@@ -23,9 +23,9 @@
             </div>
             <div class="col-12 col-lg-4">
                 <input type="text" name="name" value="{{ old('name') }}">
-                @if ($errors->has('name'))
+                @if ($errors->add->has('name'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->add->first('name') }}</strong>
                         </span>
                 @endif
             </div>
@@ -34,9 +34,9 @@
             </div>
             <div class="col-12 col-lg-3">
                 <input type="email" name="email" value="{{ old('email') }}">
-                @if ($errors->has('email'))
+                @if ($errors->add->has('email'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->add->first('email') }}</strong>
                         </span>
                 @endif
             </div>
@@ -45,9 +45,9 @@
             </div>
             <div class="col-12 col-lg-4">
                 <input type="text" name="last_name"  value="{{ old('last_name') }}">
-                @if ($errors->has('last_name'))
+                @if ($errors->add->has('last_name'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('last_name') }}</strong>
+                            <strong>{{ $errors->add->first('last_name') }}</strong>
                         </span>
                 @endif
             </div>
@@ -56,9 +56,9 @@
             </div>
             <div class="col-12 col-lg-3">
                 <input type="text" name="phone" value="{{ old('phone') }}">
-                @if ($errors->has('phone'))
+                @if ($errors->add->has('phone'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('phone') }}</strong>
+                            <strong>{{ $errors->add->first('phone') }}</strong>
                         </span>
                 @endif
             </div>
@@ -68,9 +68,9 @@
             <div class="col-6 col-lg-4 upload">
                 <label for="photo"></label>
                 <input type="file" name="photo"  value="{{ old('photo') }}">
-                @if ($errors->has('photo'))
+                @if ($errors->add->has('photo'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('photo') }}</strong>
+                            <strong>{{ $errors->add->first('photo') }}</strong>
                         </span>
                 @endif
             </div>
@@ -79,9 +79,9 @@
             </div>
             <div class="col-12 col-lg-3">
                 <input type="text" name="address" value="{{ old('address') }}">
-                @if ($errors->has('address'))
+                @if ($errors->add->has('address'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('address') }}</strong>
+                            <strong>{{ $errors->add->first('address') }}</strong>
                         </span>
                 @endif
             </div>
@@ -90,9 +90,9 @@
             </div>
             <div class="col-12 col-lg-10">
                 <input type="date" name="birthday" min="1900-01-01" value="{{ old('birthday') }}">
-                @if ($errors->has('birthday'))
+                @if ($errors->add->has('birthday'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('birthday') }}</strong>
+                            <strong>{{ $errors->add->first('birthday') }}</strong>
                         </span>
                 @endif
             </div>
@@ -133,9 +133,9 @@
                     <input class="checkbox" type="radio" name="sex" value="female">
                     <label>Female</label>
                 @endif
-                @if ($errors->has('sex'))
+                @if ($errors->add->has('sex'))
                     <span class="help-block">
-                            <strong>{{ $errors->first('sex') }}</strong>
+                            <strong>{{ $errors->add->first('sex') }}</strong>
                         </span>
                 @endif
             </div>
@@ -191,7 +191,6 @@
 
 
 
-
 {{--update contact--}}
 
 
@@ -221,10 +220,10 @@
                  <p>First Name</p>
              </div>
              <div class="col-12 col-lg-4">
-                 <input class="qw" type="text" name="name" value="{{ old('name') }}">
-                 @if ($errors->has('name'))
+                 <input class="name" type="text" name="name" value="{{ old('name') }}">
+                 @if ($errors->update->has('name'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('name') }}</strong>
+                         <strong>{{ $errors->update->first('name') }}</strong>
                      </span>
                  @endif
              </div>
@@ -233,9 +232,9 @@
              </div>
              <div class="col-12 col-lg-3">
                  <input type="email" name="email" value="{{ old('email') }}">
-                 @if ($errors->has('email'))
+                 @if ($errors->update->has('email'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('email') }}</strong>
+                         <strong>{{ $errors->update->first('email') }}</strong>
                      </span>
                  @endif
              </div>
@@ -244,9 +243,9 @@
              </div>
              <div class="col-12 col-lg-4">
                  <input type="text" name="last_name"  value="{{ old('last_name') }}">
-                 @if ($errors->has('last_name'))
+                 @if ($errors->update->has('last_name'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('last_name') }}</strong>
+                         <strong>{{ $errors->update->first('last_name') }}</strong>
                      </span>
                  @endif
              </div>
@@ -255,9 +254,9 @@
              </div>
              <div class="col-12 col-lg-3">
                  <input type="text" name="phone" value="{{ old('phone') }}">
-                 @if ($errors->has('phone'))
+                 @if ($errors->update->has('phone'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('phone') }}</strong>
+                         <strong>{{ $errors->update->first('phone') }}</strong>
                      </span>
                  @endif
              </div>
@@ -267,9 +266,9 @@
              <div class="col-6 col-lg-4 upload">
                  <label for="photo"></label>
                  <input type="file" name="photo"  value="{{ old('photo') }}">
-                 @if ($errors->has('photo'))
+                 @if ($errors->update->has('photo'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('photo') }}</strong>
+                         <strong>{{ $errors->update->first('photo') }}</strong>
                      </span>
                  @endif
              </div>
@@ -278,9 +277,9 @@
              </div>
              <div class="col-12 col-lg-3">
                  <input type="text" name="address" value="{{ old('address') }}">
-                 @if ($errors->has('address'))
+                 @if ($errors->update->has('address'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('address') }}</strong>
+                         <strong>{{ $errors->update->first('address') }}</strong>
                      </span>
                  @endif
              </div>
@@ -289,9 +288,9 @@
              </div>
              <div class="col-12 col-lg-10">
                  <input type="date" name="birthday" min="1900-01-01" value="{{ old('birthday') }}">
-                 @if ($errors->has('birthday'))
+                 @if ($errors->update->has('birthday'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('birthday') }}</strong>
+                         <strong>{{ $errors->update->first('birthday') }}</strong>
                      </span>
                  @endif
              </div>
@@ -316,9 +315,9 @@
                  <label >Male</label>
                  <input class="checkbox" type="radio" name="sex" value="female">
                  <label>Female</label>
-                 @if ($errors->has('sex'))
+                 @if ($errors->update->has('sex'))
                      <span class="help-block">
-                         <strong>{{ $errors->first('sex') }}</strong>
+                         <strong>{{ $errors->update->first('sex') }}</strong>
                      </span>
                  @endif
              </div>

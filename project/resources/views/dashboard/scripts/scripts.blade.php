@@ -37,16 +37,16 @@
     // });
 
 </script>
-{{--@if($errors->all())--}}
-    {{--<script>--}}
-        {{--$('.enter').click();--}}
-    {{--</script>--}}
-    {{--@endif--}}
-{{--@if(isset($_POST['update']) && $errors->all())--}}
-    {{--<script>--}}
-        {{--$('.enter-update').click();--}}
-    {{--</script>--}}
-{{--@endif--}}
+@if($errors->add->all())
+    <script>
+        $('.enter').click();
+    </script>
+    @endif
+@if($errors->update->all())
+    <script>
+        $('.enter-update').click();
+    </script>
+@endif
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>

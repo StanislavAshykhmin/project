@@ -15,6 +15,7 @@
             <p>Main info</p>
         </div>
     </div>
+
     @foreach($users as $user)
         <div class="row align-items-center text">
             <div class="col-2 col-lg-1 text-left test1">
