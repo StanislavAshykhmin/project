@@ -128,7 +128,7 @@
                 <li>
                     <a href="">{{$friend->name}}</a>
                 @if(count($friend->childs))
-                    @include('welcome', ['id' => $user->id])
+                    @include('reqursive-tree', ['id' => $user->id])
                 @endif
                 </li>
                 @endforeach

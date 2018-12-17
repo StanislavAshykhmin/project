@@ -5,6 +5,8 @@
     @endpush
 
 @section('content')
+    <div class="content">
+        <div class="container">
     <div class="row align-items-center text">
         <div class="col-4 col-lg-1 text-left test">
             <p>Photo</p>
@@ -54,6 +56,7 @@
             </div>
 
         </div>
+
     @endforeach
     <ul class="pagination" style="border: #1f648b;">
         {{ $users->links() }}
@@ -62,6 +65,8 @@
         <button class="button_add_users enter">
             <span class="open"></span>
         </button>
+    </div>
+        </div>
     </div>
     @endsection
 @push('scripts')

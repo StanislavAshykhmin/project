@@ -61,8 +61,8 @@
                         @foreach($friends as $friend)
                         <li>
                             <a href="">{{$friend->name}}</a>
-                            @if(count($friend->childs))
-                            @include('welcome', ['id' => $user->id])
+                            @if(count($friend->children))
+                            @include('reqursive-tree', ['id' => $user->id, 'childrens'=>$friend->children])
                             @endif
                         </li>
                         @endforeach

@@ -48,10 +48,9 @@ class HomeController extends Controller
     public function show($id)
     {
         $user = Contact::find($id);
-        dd($user);
-        $friends = $user->childs;
+        $friends = $user->children;
 //        $bfriends = $userP->bchilds;
-        return view('user-tree', ['friends' => $friends,/*'bfriends'=>$bfriends, */
+        return view('dashboard.contacts.show', ['friends' => $friends,/*'bfriends'=>$bfriends, */
             'user' => $user]);
     }
 

@@ -11,11 +11,7 @@
 <body>
 @include('layouts.header')
 @include('dashboard.notifications.message')
-<div class="content">
-    <div class="container">
-        @yield('content')
-    </div>
-</div>
+@yield('content')
 @include('dashboard.popups.popups')
 <div id="toTop">&#8657;</div>
 @stack('scripts')
