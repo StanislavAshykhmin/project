@@ -58,6 +58,7 @@
                 url: url,
                 success: function (result) {
                     console.log(result)
+                    console.log(result.contact.sex)
                     let popup = $('.edit-popup')
                     popup.find('input[name="id"]').val(result.contact.id)
                     popup.find('input[name="name"]').val(result.contact.name)
@@ -69,6 +70,14 @@
                     popup.find('input[name="death"]').val(result.contact.death)
                     popup.find('input[name="sex"]').val(result.contact.sex)
                     popup.find('input[name="parent_id"]').val(result.contact.parent_id)
+                    if (result.contact.sex == 'male')
+                    {
+                        $( ".male").prop('checked', true);
+                    }
+                    else
+                    {
+                        $( ".female").prop('checked', true);
+                    }
 
                 },err: function (err) {
                     console.log(err)

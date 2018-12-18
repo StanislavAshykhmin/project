@@ -156,7 +156,7 @@
             <div class="col-12 col-lg-10">
                 {{--<input class="contacts_input" type="text" name="add contacts">--}}
                 <select name="parent_id" size="1">
-                    <option selected></option>
+                    <option selected value="{{old($user->name)}}"> </option>
                     @foreach($users as $user)
                         <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
                     @endforeach
@@ -311,9 +311,9 @@
              </div>
              <div class="col-9 col-lg-11 check">
                  {{--<input class="sex" type="hidden" name="sex" value="">--}}
-                 <input class="checkbox" type="radio" name="sex" value="male">
+                 <input class="checkbox male" type="radio" name="sex" value="male">
                  <label >Male</label>
-                 <input class="checkbox" type="radio" name="sex" value="female">
+                 <input class="checkbox female" type="radio" name="sex" value="female">
                  <label>Female</label>
                  @if ($errors->update->has('sex'))
                      <span class="help-block">
