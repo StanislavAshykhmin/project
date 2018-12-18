@@ -67,7 +67,7 @@
             </div>
             <div class="col-6 col-lg-4 upload">
                 <label for="photo"></label>
-                <input type="file" name="photo"  value="{{ old('photo') }}">
+                <input type="file" name="photo"  value="">
                 @if ($errors->add->has('photo'))
                     <span class="help-block">
                             <strong>{{ $errors->add->first('photo') }}</strong>
