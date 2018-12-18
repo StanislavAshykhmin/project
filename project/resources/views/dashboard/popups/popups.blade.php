@@ -156,9 +156,14 @@
             <div class="col-12 col-lg-10">
                 {{--<input class="contacts_input" type="text" name="add contacts">--}}
                 <select name="parent_id" size="1">
-                    <option selected value="{{old($user->name)}}"> </option>
+                    {{--<option selected value="{{old($user->name)}}"> </option>--}}
+                    <option selected></option>
                     @foreach($users as $user)
-                        <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                        @if(old('parent_id') == $user->id)
+                            <option selected value="{{old('parent_id')}}">{{$user->name}} {{$user->last_name}}</option>
+                        @else
+                            <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -214,7 +219,7 @@
      </div>
      <form method="post" action="{{route('update_push')}}" enctype="multipart/form-data">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-         <input class="id" type="hidden" name="id" value="">
+         <input class="id" type="hidden" name="id" value="{{old('id')}}">
          <div class="row">
              <div class="col-12 col-lg-2 text-left">
                  <p>First Name</p>
@@ -311,10 +316,22 @@
              </div>
              <div class="col-9 col-lg-11 check">
                  {{--<input class="sex" type="hidden" name="sex" value="">--}}
-                 <input class="checkbox male" type="radio" name="sex" value="male">
-                 <label >Male</label>
-                 <input class="checkbox female" type="radio" name="sex" value="female">
-                 <label>Female</label>
+                 @if(old('sex') == 'male')
+                     <input class="checkbox" type="radio" name="sex" value="male" checked>
+                     <label >Male</label>
+                     <input class="checkbox" type="radio" name="sex" value="female">
+                     <label>Female</label>
+                 @elseif(old('sex') == 'female')
+                     <input class="checkbox" type="radio" name="sex" value="male">
+                     <label >Male</label>
+                     <input class="checkbox" type="radio" name="sex" value="female" checked>
+                     <label>Female</label>
+                 @else
+                     <input class="checkbox male" type="radio" name="sex" value="male">
+                     <label >Male</label>
+                     <input class="checkbox female" type="radio" name="sex" value="female">
+                     <label>Female</label>
+                 @endif
                  @if ($errors->update->has('sex'))
                      <span class="help-block">
                          <strong>{{ $errors->update->first('sex') }}</strong>
@@ -340,7 +357,7 @@
                  <select name="parent_id" size="1">
                      <option selected></option>
                      @foreach($users as $user)
-                         <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                         <option class="parent_id" value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
                      @endforeach
                  </select>
              </div>

@@ -59,9 +59,9 @@
         </div>
 
     @endforeach
-    <ul class="pagination" style="border: #1f648b;">
-        {{ $users->links() }}
-    </ul>
+    {{--<ul class="pagination" style="border: #1f648b;">--}}
+        {{--{{ $users->links() }}--}}
+    {{--</ul>--}}
     <div class="button_open_popup">
         <button class="button_add_users enter">
             <span class="open"></span>

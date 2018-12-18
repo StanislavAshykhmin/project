@@ -78,6 +78,14 @@
                     {
                         $( ".female").prop('checked', true);
                     }
+                    // if (result.contact.parent_id != null)
+                    // {
+                    //     $( ".parent_id").prop('selected', true);
+                    // }
+                    // else
+                    // {
+                    //     $( ".parent_id").prop('selected', false);
+                    // }
 
                 },err: function (err) {
                     console.log(err)
