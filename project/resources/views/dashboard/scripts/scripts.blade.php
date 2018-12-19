@@ -73,7 +73,6 @@
 {{--Скрипт для появления фото в попапе при загрузке--}}
 <script>
     function readURL(input) {
-
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
