@@ -20,7 +20,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $users = Contact::where('id', '>', '0')->paginate(10);
+
+//        $users = Contact::where('id', '>', '0')->paginate(10);
+        $users = Contact::all();
         return view('dashboard.contacts.index', ['users' => $users]);
     }
 
@@ -29,7 +31,6 @@ class HomeController extends Controller
 
         $data = $request->all();
         $image = $request->file('photo')->store('uploads', 'public');
-
         DB::table('contacts')->insert([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -49,7 +50,7 @@ class HomeController extends Controller
     {
         $user = Contact::find($id);
         $friends = $user->children;
-        return view('dashboard.contacts.show', ['friends' => $friends,/*'bfriends'=>$bfriends, */
+        return view('dashboard.contacts.show', ['friends' => $friends,
             'user' => $user]);
     }
 

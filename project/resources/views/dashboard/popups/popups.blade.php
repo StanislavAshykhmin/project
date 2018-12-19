@@ -66,13 +66,18 @@
                 <p>Photo</p>
             </div>
             <div class="col-6 col-lg-4 upload">
-                <label for="photo"></label>
-                <input type="file" name="photo"  value="">
-                @if ($errors->add->has('photo'))
-                    <span class="help-block">
-                            <strong>{{ $errors->add->first('photo') }}</strong>
+                <div class="upload-file-container">
+                    <img id="image" src="" alt=""/>
+                    <div class="upload-file-container-text">
+                        <span>Add photo</span>
+                        <input type="file" name="photo" class="photo" id="imgInput" value="{{ old('photo') }}">
+                        @if ($errors->has('photo'))
+                            <span class="help-block">
+                            <strong>{{ $errors->first('photo') }}</strong>
                         </span>
-                @endif
+                        @endif
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-lg-3 text-left">
                 <p>Personnal address</p>
@@ -118,20 +123,20 @@
             </div>
             <div class="col-9 col-lg-11 check">
                 @if(old('sex') == 'male')
-                <input class="checkbox" type="radio" name="sex" value="male" checked>
-                <label >Male</label>
-                <input class="checkbox" type="radio" name="sex" value="female">
-                <label>Female</label>
-                    @elseif(old('sex') == 'female')
-                    <input class="checkbox" type="radio" name="sex" value="male">
-                    <label >Male</label>
-                    <input class="checkbox" type="radio" name="sex" value="female" checked>
-                    <label>Female</label>
-                    @else
-                    <input class="checkbox" type="radio" name="sex" value="male">
-                    <label >Male</label>
-                    <input class="checkbox" type="radio" name="sex" value="female">
-                    <label>Female</label>
+                    <input class="checkbox" id="check1" type="radio" name="sex" value="male" checked>
+                    <label for="check1" >Male</label>
+                    <input class="checkbox" id="check2" type="radio" name="sex" value="female">
+                    <label for="check2">Female</label>
+                @elseif(old('sex') == 'female')
+                    <input class="checkbox" id="check1" type="radio" name="sex" value="male">
+                    <label for="check1" >Male</label>
+                    <input class="checkbox" id="check2" type="radio" name="sex" value="female" checked>
+                    <label for="check2">Female</label>
+                @else
+                    <input class="checkbox" id="check1" type="radio" name="sex" value="male">
+                    <label for="check1" >Male</label>
+                    <input class="checkbox" id="check2" type="radio" name="sex" value="female">
+                    <label for="check2">Female</label>
                 @endif
                 @if ($errors->add->has('sex'))
                     <span class="help-block">
@@ -269,13 +274,18 @@
                  <p>Photo</p>
              </div>
              <div class="col-6 col-lg-4 upload">
-                 <label for="photo"></label>
-                 <input type="file" name="photo"  value="{{ old('photo') }}">
-                 @if ($errors->update->has('photo'))
-                     <span class="help-block">
-                         <strong>{{ $errors->update->first('photo') }}</strong>
-                     </span>
-                 @endif
+                 <div class="upload-file-container">
+                     <img id="imageUpdate" src="#" alt=""/>
+                     <div class="upload-file-container-text">
+                         <span>Add photo</span>
+                         <input type="file" name="photo" class="photo" id="imgInputUpdate" value="{{ old('photo') }}">
+                         @if ($errors->has('photo'))
+                             <span class="help-block">
+                                <strong>{{ $errors->first('photo') }}</strong>
+                                </span>
+                         @endif
+                     </div>
+                 </div>
              </div>
              <div class="col-12 col-lg-3 text-left">
                  <p>Personnal address</p>
@@ -317,20 +327,20 @@
              <div class="col-9 col-lg-11 check">
                  {{--<input class="sex" type="hidden" name="sex" value="">--}}
                  @if(old('sex') == 'male')
-                     <input class="checkbox" type="radio" name="sex" value="male" checked>
-                     <label >Male</label>
-                     <input class="checkbox" type="radio" name="sex" value="female">
-                     <label>Female</label>
+                     <input class="checkbox" id="check3" type="radio" name="sex" value="male" checked>
+                     <label for="check3" >Male</label>
+                     <input class="checkbox" id="check4" type="radio" name="sex" value="female">
+                     <label for="check4">Female</label>
                  @elseif(old('sex') == 'female')
-                     <input class="checkbox" type="radio" name="sex" value="male">
-                     <label >Male</label>
-                     <input class="checkbox" type="radio" name="sex" value="female" checked>
-                     <label>Female</label>
+                     <input class="checkbox" id="check3" type="radio" name="sex" value="male">
+                     <label for="check3" >Male</label>
+                     <input class="checkbox" id="check4" type="radio" name="sex" value="female" checked>
+                     <label for="check4">Female</label>
                  @else
-                     <input class="checkbox male" type="radio" name="sex" value="male">
-                     <label >Male</label>
-                     <input class="checkbox female" type="radio" name="sex" value="female">
-                     <label>Female</label>
+                     <input class="checkbox male" id="check3" type="radio" name="sex" value="male">
+                     <label for="check3" >Male</label>
+                     <input class="checkbox female" id="check4" type="radio" name="sex" value="female">
+                     <label for="check4">Female</label>
                  @endif
                  @if ($errors->update->has('sex'))
                      <span class="help-block">
@@ -354,10 +364,14 @@
              </div>
              <div class="col-12 col-lg-10">
                  {{--<input class="contacts_input" type="text" name="add contacts">--}}
-                 <select name="parent_id" size="1">
+                 <select name="parent_id" id="parent_id" size="1">
                      <option selected></option>
                      @foreach($users as $user)
-                         <option class="parent_id" value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                         @if(old('parent_id') == $user->id)
+                             <option selected value="{{old('parent_id')}}">{{$user->name}} {{$user->last_name}}</option>
+                         @else
+                             <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                         @endif
                      @endforeach
                  </select>
              </div>

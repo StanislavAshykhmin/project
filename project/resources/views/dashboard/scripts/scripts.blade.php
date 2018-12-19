@@ -67,7 +67,7 @@
                     popup.find('input[name="phone"]').val(result.contact.phone)
                     popup.find('input[name="address"]').val(result.contact.address)
                     popup.find('input[name="birthday"]').val(result.contact.birthday)
-                    popup.find('input[name="photo"]').val(result.contact.photo)
+                    // popup.find('input[name="photo"]').val(result.contact.photo)
                     popup.find('input[name="death"]').val(result.contact.death)
                     popup.find('input[name="parent_id"]').val(result.contact.parent_id)
                     if (result.contact.sex == 'male')
@@ -80,7 +80,10 @@
                     }
                     if (result.contact.parent_id != null)
                     {
-                        $( ".parent_id").prop('selected', true);
+                        $.each(result, function(key, value) {
+                            $('#parent_id').append('<option selected value="'+ result.contact.parent_id + '">'+ result.contact.parent_id +'</option>');
+                        // $( ".parent_id").prop('selected', true);
+                        });
                     }
                     else
                     {
@@ -96,5 +99,34 @@
 
 
         })
+    });
+</script>
+{{--Скрипт для появления фото в попапе при загрузке--}}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInput").change(function(){
+        readURL(this);
+    });
+</script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imageUpdate').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInputUpdate").change(function(){
+        readURL(this);
     });
 </script>
