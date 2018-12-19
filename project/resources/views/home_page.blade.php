@@ -189,7 +189,7 @@
                  </div>
                 <div class="col-6 col-lg-4 upload">
                     <label for="photo"></label>
-                    <input type="file" name="photo"  value="{{ old('photo') }}">
+                    <input class="add-photo" type="file" name="photo"  value="{{ old('photo') }}">
                     @if ($errors->has('photo'))
                         <span class="help-block">
                             <strong>{{ $errors->first('photo') }}</strong>
@@ -473,6 +473,7 @@
         </form>
     </div>--}}
      <div id="toTop">&#8657;</div>
+
 <script type="text/javascript">
     $('.enter').click(function(){
       $(".popup").fadeIn();

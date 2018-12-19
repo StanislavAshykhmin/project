@@ -66,14 +66,19 @@
                 <p>Photo</p>
             </div>
             <div class="col-6 col-lg-4 upload">
-                <label for="photo"></label>
-                <input type="file" name="photo"  value="{{ old('photo') }}">
-                @if ($errors->has('photo'))
-                    <span class="help-block">
+                <div class="upload-file-container">
+                    <img id="image" src="#" alt=""/>
+                    <div class="upload-file-container-text">
+                        <span>Add photo</span>
+                        <input type="file" name="photo" class="photo" id="imgInput" value="{{ old('photo') }}">
+                        @if ($errors->has('photo'))
+                            <span class="help-block">
                             <strong>{{ $errors->first('photo') }}</strong>
                         </span>
-                @endif
-            </div>
+                        @endif
+                    </div>
+                </div>
+             </div>
             <div class="col-12 col-lg-3 text-left">
                 <p>Personnal address</p>
             </div>
@@ -112,10 +117,10 @@
                 <p>Sex</p>
             </div>
             <div class="col-9 col-lg-11 check">
-                <input class="checkbox" type="radio" name="sex" value="male">
-                <label >Male</label>
-                <input class="checkbox" type="radio" name="sex" value="female">
-                <label>Female</label>
+                <input id="check1" class="checkbox" type="radio" name="sex" value="male">
+                <label for="check1" >Male</label>
+                <input id="check2" class="checkbox" type="radio" name="sex" value="female">
+                <label for="check2">Female</label>
                 @if ($errors->has('sex'))
                     <span class="help-block">
                             <strong>{{ $errors->first('sex') }}</strong>
@@ -246,14 +251,19 @@
                  <p>Photo</p>
              </div>
              <div class="col-6 col-lg-4 upload">
-                 <label for="photo"></label>
-                 <input type="file" name="photo"  value="{{ old('photo') }}">
-                 @if ($errors->has('photo'))
-                     <span class="help-block">
-                         <strong>{{ $errors->first('photo') }}</strong>
-                     </span>
-                 @endif
-             </div>
+                 <div class="upload-file-container">
+                     <img id="image" src="#" alt=""/>
+                        <div class="upload-file-container-text">
+                           <span>Add photo</span>
+                           <input type="file" name="photo" class="photo" id="imgInput" value="{{ old('photo') }}">
+                            @if ($errors->has('photo'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('photo') }}</strong>
+                                </span>
+                            @endif
+                         </div>
+                  </div>
+              </div>
              <div class="col-12 col-lg-3 text-left">
                  <p>Personnal address</p>
              </div>
@@ -292,10 +302,10 @@
                  <p>Sex</p>
              </div>
              <div class="col-9 col-lg-11 check">
-                 <input class="checkbox" type="radio" name="sex" value="male">
-                 <label >Male</label>
-                 <input class="checkbox" type="radio" name="sex" value="female">
-                 <label>Female</label>
+                 <input id="check1" class="checkbox" type="radio" name="sex" value="male">
+                 <label for="check1" >Male</label>
+                 <input id="check2" class="checkbox" type="radio" name="sex" value="female">
+                 <label for="check2">Female</label>
                  @if ($errors->has('sex'))
                      <span class="help-block">
                          <strong>{{ $errors->first('sex') }}</strong>
