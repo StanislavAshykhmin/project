@@ -68,8 +68,22 @@
                     popup.find('input[name="address"]').val(result.contact.address)
                     popup.find('input[name="birthday"]').val(result.contact.birthday)
                     // popup.find('input[name="photo"]').val(result.contact.photo)
-                    popup.find('input[name="death"]').val(result.contact.death)
-                    popup.find('input[name="parent_id"]').val(result.contact.parent_id)
+                   //popup.find('input[name="death"]').val(result.contact.death)
+                   //  console.log($('#parent_id option').length)
+                   //  $.each(result.users, function (val, user) {
+                   //      if(user.id != result.contact.id) {
+                   //          $('#parent_id').append('<option value="' + user.id + '">' + user.name + ' ' + user.last_name + '</option>');
+                   //      }
+                   //  })
+
+
+                    var options = $('#parent_id option');
+                    var values = $.map(options ,function(option) {
+                        if (option.value == result.contact.parent_id){
+                            $(option).attr("selected","selected");
+                        }
+                    });
+
                     if (result.contact.sex == 'male')
                     {
                         $( ".male").prop('checked', true);
@@ -77,17 +91,6 @@
                     else
                     {
                         $( ".female").prop('checked', true);
-                    }
-                    if (result.contact.parent_id != null)
-                    {
-                        $.each(result, function(key, value) {
-                            $('#parent_id').append('<option selected value="'+ result.contact.parent_id + '">'+ result.contact.parent_id +'</option>');
-                        // $( ".parent_id").prop('selected', true);
-                        });
-                    }
-                    else
-                    {
-                        $( ".parent_id").prop('selected', false);
                     }
 
                 },err: function (err) {

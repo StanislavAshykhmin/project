@@ -28,18 +28,12 @@
             <div class="col-2 col-lg-1 text-center test2 enter-update " data-id="{{$user->id}}">
                 <a class="edit-button link3 edit-contact" data-url="{{route('ajax-contact', ['id' => $user->id])}}" href="{{--{{route('update', ['id'=>$user->id])}}--}}"><i class="fas fa-user-edit fa-2x"></i></a>
             </div>
-            {{--<div class="button_open_popup enter-update" data-id="{{$user->id}}">--}}
-            {{--<button class="edit-button">--}}
-            {{--<i class="fas fa-user-edit fa-2x"></i>--}}
-            {{--<span class="open"></span>--}}
-            {{--</button>--}}
-            {{--</div>--}}
             <button class="dagger btn-light" data-toggle="modal" data-target="#delete-{{$user->id}}">&times;</button>
             <div class="modal fade" id="delete-{{$user->id}}" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"></button>
+                            {{--<button type="button" class="close" data-dismiss="modal"></button>--}}
                             <h4 class="modal-title">Удалить</h4>
                         </div>
                         <div class="modal-body">

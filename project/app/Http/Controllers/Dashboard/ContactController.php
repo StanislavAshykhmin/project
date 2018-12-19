@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Contact;
 use App\Http\Requests\AddRequest;
 use App\Http\Requests\UpdateRequest;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,9 +22,7 @@ class ContactController extends Controller
 
     public function index()
     {
-
-//        $users = Contact::where('id', '>', '0')->paginate(10);
-        $users = Contact::all();
+        $users = Contact::where('id', '>', '0')->paginate(10);
         return view('dashboard.contacts.index', ['users' => $users]);
     }
 
@@ -99,7 +98,7 @@ class ContactController extends Controller
     public function getAjaxUSER($id){
         $contact = Contact::whereId($id)->first();
         if($contact){
-            return response(['contact' => $contact], 200);
+            return response(['contact' => $contact/*,'users' => Contact::all()*/], 200);
         }
         return response(['message' => 'Error !!'], 422);
     }
