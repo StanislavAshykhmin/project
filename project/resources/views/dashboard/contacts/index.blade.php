@@ -46,7 +46,7 @@
                             <form  action="{{ route('delete', ['id' => $user->id]) }}" method="POST">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button class="btn btn-danger" style="opacity: .5;">Удалить</button>
+                                <button class="btn">Удалить</button>
                                 <button type="button" class="btn btn-light m-t-10" data-dismiss="modal" style="margin-left: 33%;">Закрыть</button>
                             </form>
                         </div>

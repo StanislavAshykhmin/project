@@ -232,7 +232,7 @@ input:before{
 	background: #919191;
 	position: fixed;
 	border-radius: 50%;
-	left: 75%;
+	left: 67%;
 	top:90%;
 	bottom: 0;
 	box-shadow:  0.4em 0.4em 10px rgba(122,122,122,0.3);
@@ -419,8 +419,8 @@ hr{
 #toTop {
 	width:50px;
 	border-radius: 50%;
-	border:1px solid #54bede;
-	background:#000;
+	/*border:1px solid #54bede;*/
+	background:#919191;
 	text-align:center;
 	padding:5px;
 	position:fixed;
@@ -428,7 +428,7 @@ hr{
 	right:30px;
 	cursor:pointer;
 	display:none;
-	color:#af9d9d;
+	color:#fff;
 	font-size:25px;
 }
 .dagger{
