@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use App\Contact;
 use App\Http\Requests\AddRequest;
 use App\Http\Requests\UpdateRequest;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
-class HomeController extends Controller
+class ContactController extends Controller
 {
     /**
      * Show the application dashboard.

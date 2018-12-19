@@ -11,6 +11,9 @@ class UpdateRequest extends FormRequest
      *
      * @return bool
      */
+
+    protected $errorBag = 'update';
+
     public function authorize()
     {
         return true;

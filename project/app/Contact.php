@@ -8,8 +8,7 @@ class Contact extends Model
 {
     public $fillable = ['name','parent_id', 'id'];
     protected $with = [
-        'children',
-        'parent'
+        'children'
     ];
 
 
@@ -21,9 +20,9 @@ class Contact extends Model
         return now()->diffInYears( \Carbon\Carbon::parse($this->birthday));
     }
 
-    public function parent(){
-        return  $this->belongsTo('App\Contact','id','parent_id');
-    }
+//    public function parent(){
+//        return  $this->belongsTo('App\Contact','id','parent_id');
+//    }
 
     public function saveContacts(){
         return $this->hasMany('App\Contact', 'id');

@@ -12,17 +12,16 @@
 */
 
 Route::get('/', function () {
-//    return view('welcome');
     return redirect('/login');
 });
 
 Auth::routes();
 Route::group(['middleware'=>['web', 'auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::post('/home/add', 'HomeController@store')->name('add');
-    Route::get('/{id}', 'HomeController@show')->name('user');
-    Route::post('/home/update', 'HomeController@update')->name('update_push');
-    Route::get('/home/update/{id}', 'HomeController@edit')->name('update');
-    Route::get('/ajax/contact/{id}', 'HomeController@getAjaxUSER')->name('ajax-contact');
-    Route::delete('/home/delete/{id}', 'HomeController@destroy')->name('delete');
+    Route::get('/home', 'Dashboard\ContactController@index')->name('home');
+    Route::post('/home/add', 'Dashboard\ContactController@store')->name('add');
+    Route::get('/{id}', 'Dashboard\ContactController@show')->name('user');
+    Route::post('/home/update', 'Dashboard\ContactController@update')->name('update_push');
+    Route::get('/home/update/{id}', 'Dashboard\ContactController@edit')->name('update');
+    Route::get('/ajax/contact/{id}', 'Dashboard\ContactController@getAjaxUSER')->name('ajax-contact');
+    Route::delete('/home/delete/{id}', 'Dashboard\ContactController@destroy')->name('delete');
 });

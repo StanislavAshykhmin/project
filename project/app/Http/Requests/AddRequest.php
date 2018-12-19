@@ -11,6 +11,9 @@ class AddRequest extends FormRequest
      *
      * @return bool
      */
+
+    protected $errorBag = 'add';
+
     public function authorize()
     {
         return true;
