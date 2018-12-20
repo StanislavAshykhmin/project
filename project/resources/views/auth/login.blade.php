@@ -3,8 +3,8 @@
     <body>
     <div id="app">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="img/logo.png" align="center"><span
-                        class="Poly">PolyMath</span></a>
+            <a class="navbar-brand" href="#"><img src="img/tree-favicon.jpg" align="center" style="width: auto; height: 70px;"><span
+                        class="Poly">Friends tree</span></a>
         </div>
 
 
