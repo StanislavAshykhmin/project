@@ -3,7 +3,8 @@
     <body>
     <div id="app">
         <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}" ><img src="/img/logo.png" align="center"/><span class="Poly">PolyMath</span></a>
+            <a class="navbar-brand" href="{{route('home')}}"><img src="/img/logo.png" align="center"/><span
+                        class="Poly">PolyMath</span></a>
         </div>
         <main class="py-4">
             <div class="row">
@@ -18,7 +19,8 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
+                                   required autofocus placeholder="Email">
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                         <strong style="display:block;">{{ $errors->first('email') }}</strong>
